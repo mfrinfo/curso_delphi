@@ -3,8 +3,8 @@ object frmTelaHeranca: TfrmTelaHeranca
   Top = 0
   BorderStyle = bsDialog
   Caption = 'INFORME AQUI O T'#205'TULO'
-  ClientHeight = 517
-  ClientWidth = 990
+  ClientHeight = 478
+  ClientWidth = 864
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,25 +13,27 @@ object frmTelaHeranca: TfrmTelaHeranca
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlRodaPe: TPanel
     Left = 0
-    Top = 465
-    Width = 990
+    Top = 426
+    Width = 864
     Height = 52
     Align = alBottom
     TabOrder = 0
     DesignSize = (
-      990
+      864
       52)
-    object bntNovo: TBitBtn
+    object btnNovo: TBitBtn
       Left = 5
       Top = 16
       Width = 75
       Height = 25
       Caption = 'NOVO'
       TabOrder = 0
+      OnClick = btnNovoClick
     end
     object btnAlterar: TBitBtn
       Left = 86
@@ -40,62 +42,75 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = 'ALTERAR'
       TabOrder = 1
+      OnClick = btnAlterarClick
     end
     object btnGravar: TBitBtn
-      Left = 167
+      Left = 249
       Top = 16
       Width = 75
       Height = 25
       Caption = 'GRAVAR'
-      TabOrder = 2
+      TabOrder = 3
+      OnClick = btnGravarClick
     end
     object btnApagar: TBitBtn
-      Left = 248
+      Left = 330
       Top = 16
       Width = 75
       Height = 25
       Caption = 'APAGAR'
-      TabOrder = 3
+      TabOrder = 4
+      OnClick = btnApagarClick
     end
-    object BitBtn1: TBitBtn
-      Left = 911
+    object btnFechar: TBitBtn
+      Left = 785
       Top = 16
       Width = 75
       Height = 25
       Anchors = [akTop, akRight]
       Caption = 'FECHAR'
-      TabOrder = 4
+      TabOrder = 6
+      OnClick = btnFecharClick
     end
-    object DBNavigator1: TDBNavigator
-      Left = 329
+    object btnNavigator: TDBNavigator
+      Left = 411
       Top = 16
       Width = 264
       Height = 25
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       TabOrder = 5
     end
+    object btnCancelar: TBitBtn
+      Left = 167
+      Top = 16
+      Width = 75
+      Height = 25
+      Caption = 'CANCELAR'
+      TabOrder = 2
+      OnClick = btnCancelarClick
+    end
   end
   object pnlCentro: TPanel
     Left = 0
     Top = 0
-    Width = 990
-    Height = 465
+    Width = 864
+    Height = 426
     Align = alClient
     TabOrder = 1
-    object PageControl1: TPageControl
+    object pgcPrincipal: TPageControl
       Left = 1
       Top = 1
-      Width = 988
-      Height = 463
-      ActivePage = TabSheet1
+      Width = 862
+      Height = 424
+      ActivePage = tabListagem
       Align = alClient
       TabOrder = 0
-      object TabSheet1: TTabSheet
+      object tabListagem: TTabSheet
         Caption = 'Listagem'
         object pnlListagemTop: TPanel
           Left = 0
           Top = 0
-          Width = 980
+          Width = 854
           Height = 60
           Align = alTop
           TabOrder = 0
@@ -108,7 +123,7 @@ object frmTelaHeranca: TfrmTelaHeranca
             Text = ''
             TextHint = 'Digite sua Pesquisa'
           end
-          object BitBtn2: TBitBtn
+          object btnPesquisa: TBitBtn
             Left = 369
             Top = 20
             Width = 75
@@ -120,15 +135,15 @@ object frmTelaHeranca: TfrmTelaHeranca
         object pnlListagemCentro: TPanel
           Left = 0
           Top = 60
-          Width = 980
-          Height = 375
+          Width = 854
+          Height = 336
           Align = alClient
           TabOrder = 1
           object DBGrid1: TDBGrid
             Left = 1
             Top = 1
-            Width = 978
-            Height = 373
+            Width = 852
+            Height = 334
             Align = alClient
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
@@ -139,10 +154,21 @@ object frmTelaHeranca: TfrmTelaHeranca
           end
         end
       end
-      object TabSheet2: TTabSheet
+      object tabManutencao: TTabSheet
         Caption = 'Manuten'#231#227'o'
         ImageIndex = 1
       end
     end
+  end
+  object QryListagem: TZQuery
+    Connection = DtmPrincipal.ConexaoDB
+    Params = <>
+    Left = 573
+    Top = 25
+  end
+  object DtsListagem: TDataSource
+    DataSet = QryListagem
+    Left = 637
+    Top = 25
   end
 end

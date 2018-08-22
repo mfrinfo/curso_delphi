@@ -6,27 +6,41 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
   Vcl.StdCtrls, Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask,
-  Vcl.DBCtrls;
+  Vcl.DBCtrls, ZAbstractRODataset, ZAbstractDataset, ZDataset, uDtmPrincipal;
 
 type
   TfrmTelaHeranca = class(TForm)
     pnlRodaPe: TPanel;
     pnlCentro: TPanel;
-    PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    bntNovo: TBitBtn;
+    pgcPrincipal: TPageControl;
+    tabListagem: TTabSheet;
+    tabManutencao: TTabSheet;
+    btnNovo: TBitBtn;
     btnAlterar: TBitBtn;
     btnGravar: TBitBtn;
     btnApagar: TBitBtn;
-    BitBtn1: TBitBtn;
+    btnFechar: TBitBtn;
     pnlListagemTop: TPanel;
     pnlListagemCentro: TPanel;
     DBGrid1: TDBGrid;
     mskPesquisa: TMaskEdit;
-    BitBtn2: TBitBtn;
-    DBNavigator1: TDBNavigator;
+    btnPesquisa: TBitBtn;
+    btnNavigator: TDBNavigator;
+    QryListagem: TZQuery;
+    DtsListagem: TDataSource;
+    btnCancelar: TBitBtn;
+    procedure FormCreate(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnApagarClick(Sender: TObject);
   private
+    procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
+      btnApagar: TBitBtn; btnNavigator: TDBNavigator;
+      pgcPrincipal: TPageControl; Flag: Boolean);
+    procedure ControlaIndiceTab(pgcPrincipal: TPageControl; i: Integer);
     { Private declarations }
   public
     { Public declarations }
@@ -38,5 +52,66 @@ var
 implementation
 
 {$R *.dfm}
+
+{**** Function/Procedure DE CONTROLE}
+procedure TfrmTelaHeranca.ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
+                          btnApagar:TBitBtn; btnNavigator:TDBNavigator;
+                          pgcPrincipal:TPageControl; Flag:Boolean);
+begin
+  btnNovo.Enabled      :=Flag;
+  btnApagar.Enabled    :=Flag;
+  btnAlterar.Enabled   :=Flag;
+  btnNavigator.Enabled :=Flag;
+  pgcPrincipal.Pages[0].TabVisible:=Flag;
+
+  btnCancelar.Enabled  :=not(Flag);
+  btnGravar.Enabled    :=not(Flag);
+end;
+
+procedure TfrmTelaHeranca.ControlaIndiceTab(pgcPrincipal:TPageControl; i: Integer);
+begin
+  if (pgcPrincipal.Pages[i].TabVisible) then
+      pgcPrincipal.TabIndex:=0;
+end;
+
+
+procedure TfrmTelaHeranca.btnFecharClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmTelaHeranca.FormCreate(Sender: TObject);
+begin
+  QryListagem.Connection:=DtmPrincipal.ConexaoDB;
+end;
+
+procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, False);
+end;
+
+procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+  ControlaIndiceTab(pgcPrincipal, 0);
+end;
+
+procedure TfrmTelaHeranca.btnCancelarClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+  ControlaIndiceTab(pgcPrincipal, 0);
+end;
+
+procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+  ControlaIndiceTab(pgcPrincipal, 0);
+end;
+
+procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
+end;
+
 
 end.

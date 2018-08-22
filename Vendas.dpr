@@ -4,7 +4,10 @@ uses
   Vcl.Forms,
   uPrincipal in 'uPrincipal.pas' {frmMenuPrincipal},
   uDtmPrincipal in 'datamodule\uDtmPrincipal.pas' {DtmPrincipal: TDataModule},
-  uTelaHeranca in 'heranca\uTelaHeranca.pas' {frmTelaHeranca};
+  uTelaHeranca in 'heranca\uTelaHeranca.pas' {frmTelaHeranca},
+  uCadCategorias in 'cadastros\uCadCategorias.pas' {frmCadCategoria},
+  Enter in 'terceiros\Enter.pas',
+  uEnum in 'heranca\uEnum.pas';
 
 {$R *.res}
 

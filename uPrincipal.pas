@@ -3,8 +3,8 @@ unit uPrincipal;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDtmPrincipal, Enter;
 
 type
   TfrmMenuPrincipal = class(TForm)
@@ -26,8 +26,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FECHAR1Click(Sender: TObject);
+    procedure CATEGORIAS1Click(Sender: TObject);
   private
     { Private declarations }
+    TeclaEnter:TMREnter;
   public
     { Public declarations }
   end;
@@ -39,8 +41,15 @@ implementation
 
 {$R *.dfm}
 
-uses uDtmPrincipal;
+uses uCadCategorias;
 
+
+procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
+begin
+  frmCadCategoria:=TfrmCadCategoria.Create(Self);
+  frmCadCategoria.ShowModal;
+  frmCadCategoria.Release;
+end;
 
 procedure TfrmMenuPrincipal.FECHAR1Click(Sender: TObject);
 begin
@@ -52,7 +61,6 @@ procedure TfrmMenuPrincipal.FormClose(Sender: TObject;
 begin
   if Assigned(DtmPrincipal) then
      FreeAndNil(DtmPrincipal);
-
 end;
 
 procedure TfrmMenuPrincipal.FormCreate(Sender: TObject);
@@ -70,7 +78,7 @@ begin
   DtmPrincipal.ConexaoDB.Connected:=True;  //Faz a Conexão do Banco
   }
 
-  DtmPrincipal:=TDtmPrincipal.Create(self);     //Instancia o DataModule
+{  DtmPrincipal:=TDtmPrincipal.Create(self);     //Instancia o DataModule
   with DtmPrincipal.ConexaoDB do begin
     SQLHourGlass:=True;    //Habilita o Cursor em cada transação no banco de dados
     LibraryLocation:=ExtractFilePath(Application.ExeName)+'ntwdblib.dll';  //Seta a DLL para conexao do SQL
@@ -82,6 +90,24 @@ begin
     Database:='vendas';  //Nome do Banco de Dados
     Connected:=True;  //Faz a Conexão do Banco
   end;
+  }
+
+  DtmPrincipal:=TDtmPrincipal.Create(self);     //Instancia o DataModule
+  with DtmPrincipal.ConexaoDB do begin
+    SQLHourGlass:=True;    //Habilita o Cursor em cada transação no banco de dados
+    LibraryLocation:=ExtractFilePath(Application.ExeName)+'ntwdblib.dll';  //Seta a DLL para conexao do SQL
+    Protocol:='mssql';  //Protocolo do banco de dados
+    HostName:='.\BUSINESSSQL2016'; //Instancia do SQLServer
+    Port:=1433;          //Porta do SQL Server
+    User := 'sa';  //Usuario do Banco de Dados
+    Password:='FOLHAmatic&201IOB';  //Senha do Usuário do banco
+    Database:='vendas';  //Nome do Banco de Dados
+    Connected:=True;  //Faz a Conexão do Banco
+  end;
+
+  TeclaEnter:=TMREnter.Create(Self);
+  TeclaEnter.FocusEnabled:=True;
+  TeclaEnter.FocusColor:=clInfoBk;
 
 end;
 

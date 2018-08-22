@@ -3,7 +3,8 @@ program Vendas;
 uses
   Vcl.Forms,
   uPrincipal in 'uPrincipal.pas' {frmMenuPrincipal},
-  uDtmPrincipal in 'datamodule\uDtmPrincipal.pas' {DtmPrincipal: TDataModule};
+  uDtmPrincipal in 'datamodule\uDtmPrincipal.pas' {DtmPrincipal: TDataModule},
+  uTelaHeranca in 'heranca\uTelaHeranca.pas' {frmTelaHeranca};
 
 {$R *.res}
 

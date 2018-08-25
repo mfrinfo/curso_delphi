@@ -23,7 +23,7 @@ type
     btnFechar: TBitBtn;
     pnlListagemTop: TPanel;
     pnlListagemCentro: TPanel;
-    DBGrid1: TDBGrid;
+    grdListagem: TDBGrid;
     mskPesquisa: TMaskEdit;
     btnPesquisa: TBitBtn;
     btnNavigator: TDBNavigator;
@@ -109,9 +109,21 @@ end;
 
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
-  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
-  ControlaIndiceTab(pgcPrincipal, 0);
-  EstadoDoCadastro:=ecNenhum;
+  Try
+    ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+    ControlaIndiceTab(pgcPrincipal, 0);
+
+    if (EstadoDoCadastro=ecInserir) then
+        showmessage('Inserir')
+    else if (EstadoDoCadastro=ecAlterar) then
+        showmessage('Alterado')
+    else
+       showmessage('Nada aconteceu');
+
+  Finally
+    EstadoDoCadastro:=ecNenhum;
+  End;
+
 end;
 
 procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);

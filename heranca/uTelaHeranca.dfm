@@ -139,7 +139,7 @@ object frmTelaHeranca: TfrmTelaHeranca
           Height = 336
           Align = alClient
           TabOrder = 1
-          object DBGrid1: TDBGrid
+          object grdListagem: TDBGrid
             Left = 1
             Top = 1
             Width = 852
@@ -157,6 +157,10 @@ object frmTelaHeranca: TfrmTelaHeranca
       object tabManutencao: TTabSheet
         Caption = 'Manuten'#231#227'o'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
       end
     end
   end

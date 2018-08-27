@@ -116,6 +116,13 @@ object frmTelaHeranca: TfrmTelaHeranca
           Height = 60
           Align = alTop
           TabOrder = 0
+          object lblIndice: TLabel
+            Left = 4
+            Top = 9
+            Width = 39
+            Height = 13
+            Caption = 'lblIndice'
+          end
           object mskPesquisa: TMaskEdit
             Left = 3
             Top = 24
@@ -124,6 +131,7 @@ object frmTelaHeranca: TfrmTelaHeranca
             TabOrder = 0
             Text = ''
             TextHint = 'Digite sua Pesquisa'
+            OnChange = mskPesquisaChange
           end
           object btnPesquisa: TBitBtn
             Left = 369
@@ -154,6 +162,7 @@ object frmTelaHeranca: TfrmTelaHeranca
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            OnTitleClick = grdListagemTitleClick
           end
         end
       end

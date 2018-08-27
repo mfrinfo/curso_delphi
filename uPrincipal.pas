@@ -92,19 +92,6 @@ begin
   end;
   }
 
-  DtmPrincipal:=TDtmPrincipal.Create(self);     //Instancia o DataModule
-  with DtmPrincipal.ConexaoDB do begin
-    SQLHourGlass:=True;    //Habilita o Cursor em cada transação no banco de dados
-    LibraryLocation:=ExtractFilePath(Application.ExeName)+'ntwdblib.dll';  //Seta a DLL para conexao do SQL
-    Protocol:='mssql';  //Protocolo do banco de dados
-    HostName:='.\SERVERCURSO'; //Instancia do SQLServer
-    Port:=1433;          //Porta do SQL Server
-    User := 'sa';  //Usuario do Banco de Dados
-    Password:='mudar@123';  //Senha do Usuário do banco
-    Database:='vendas';  //Nome do Banco de Dados
-    Connected:=True;  //Faz a Conexão do Banco
-  end;
-
   TeclaEnter:=TMREnter.Create(Self);
   TeclaEnter.FocusEnabled:=True;
   TeclaEnter.FocusColor:=clInfoBk;

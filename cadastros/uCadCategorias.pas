@@ -12,6 +12,7 @@ type
   TfrmCadCategoria = class(TfrmTelaHeranca)
     QryListagemcategoriaId: TIntegerField;
     QryListagemdescricao: TWideStringField;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -24,5 +25,11 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadCategoria.FormCreate(Sender: TObject);
+begin
+  inherited;
+  IndiceAtual:='descricao';
+end;
 
 end.

@@ -3,7 +3,7 @@ inherited frmCadCategoria: TfrmCadCategoria
   ClientHeight = 342
   ClientWidth = 773
   ExplicitWidth = 779
-  ExplicitHeight = 370
+  ExplicitHeight = 371
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlRodaPe: TPanel
@@ -58,6 +58,8 @@ inherited frmCadCategoria: TfrmCadCategoria
         end
       end
       inherited tabManutencao: TTabSheet
+        ExplicitLeft = 0
+        ExplicitTop = 0
         ExplicitWidth = 763
         ExplicitHeight = 260
       end

@@ -13,7 +13,9 @@ object frmTelaHeranca: TfrmTelaHeranca
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlRodaPe: TPanel
@@ -145,6 +147,7 @@ object frmTelaHeranca: TfrmTelaHeranca
             Width = 852
             Height = 334
             Align = alClient
+            DataSource = DtsListagem
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
@@ -157,10 +160,6 @@ object frmTelaHeranca: TfrmTelaHeranca
       object tabManutencao: TTabSheet
         Caption = 'Manuten'#231#227'o'
         ImageIndex = 1
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
       end
     end
   end

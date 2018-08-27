@@ -37,6 +37,8 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
     procedure btnApagarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     EstadoDoCadastro:TEstadoDoCadastro;
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
@@ -82,9 +84,34 @@ begin
   Close;
 end;
 
+procedure TfrmTelaHeranca.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  //GRAVAR
+  QryListagem.Close;
+end;
+
 procedure TfrmTelaHeranca.FormCreate(Sender: TObject);
 begin
   QryListagem.Connection:=DtmPrincipal.ConexaoDB;
+  //GRAVAR
+  grdListagem.Options:=[dgTitles,
+                        dgIndicator,
+                        dgColumnResize,
+                        dgColLines,
+                        dgRowLines,
+                        dgTabs,
+                        dgRowSelect,
+                        dgAlwaysShowSelection,
+                        dgCancelOnExit,
+                        dgTitleClick,
+                        dgTitleHotTrack];
+end;
+
+procedure TfrmTelaHeranca.FormShow(Sender: TObject);
+begin
+  //GRAVAR
+  if QryListagem.SQL.Text<>EmptyStr then
+     QryListagem.Open;
 end;
 
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);

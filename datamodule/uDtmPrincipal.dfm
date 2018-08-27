@@ -5,13 +5,15 @@ object DtmPrincipal: TDtmPrincipal
   object ConexaoDB: TZConnection
     ControlsCodePage = cCP_UTF16
     Catalog = ''
+    Connected = True
     SQLHourGlass = True
-    HostName = ''
+    HostName = 'VIRTUAL-PC\SERVERCURSO'
     Port = 0
-    Database = ''
+    Database = 'vendas'
     User = 'sa'
-    Password = ''
+    Password = 'mudar@123'
     Protocol = 'mssql'
+    LibraryLocation = 'C:\cursoDelphi\ntwdblib.dll'
     Left = 24
     Top = 24
   end

@@ -214,6 +214,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Top = 16
       Width = 264
       Height = 25
+      DataSource = DtsListagem
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       TabOrder = 5
     end

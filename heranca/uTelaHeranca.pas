@@ -53,6 +53,7 @@ type
     procedure ExibirLabelIndice(Campo: string; aLabel: TLabel);
     function ExisteCampoObrigatorio: Boolean;
     procedure DesabilitarEditPK;
+    procedure LimparEdits;
     { Private declarations }
   public
     { Public declarations }
@@ -134,6 +135,18 @@ begin
     end;
   end;
 end;
+
+procedure TfrmTelaHeranca.LimparEdits;
+Var i:Integer;
+begin
+  for i := 0 to ComponentCount -1 do begin
+    if (Components[i] is TLabeledEdit) then
+      TLabeledEdit(Components[i]).Text:=EmptyStr
+    else if (Components[i] is TEdit) then
+      TEdit(Components[i]).Text:='';
+  end;
+end;
+
 {$endregion}
 
 {$region 'Métodos Virtual'}
@@ -214,12 +227,14 @@ begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
   ControlaIndiceTab(pgcPrincipal, 0);
   EstadoDoCadastro:=ecNenhum;
+  LimparEdits;
 end;
 
 procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
   EstadoDoCadastro:=ecInserir;
+  LimparEdits;
 end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
@@ -244,6 +259,7 @@ begin
        ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
        ControlaIndiceTab(pgcPrincipal, 0);
        EstadoDoCadastro:=ecNenhum;
+       LimparEdits;
     end
     else begin
       MessageDlg('Erro ao Gravar', mtWarning,[mbOK],0);
@@ -259,6 +275,7 @@ begin
     if (Excluir) then begin
        ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
        ControlaIndiceTab(pgcPrincipal, 0);
+       LimparEdits;
     end
     else begin
       MessageDlg('Erro ao Gravar', mtWarning,[mbOK],0);

@@ -65,7 +65,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnNovoClick
     end
     object btnAlterar: TBitBtn
-      Left = 86
+      Left = 85
       Top = 16
       Width = 80
       Height = 25
@@ -101,7 +101,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnAlterarClick
     end
     object btnGravar: TBitBtn
-      Left = 249
+      Left = 245
       Top = 16
       Width = 80
       Height = 25
@@ -137,7 +137,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnGravarClick
     end
     object btnApagar: TBitBtn
-      Left = 330
+      Left = 325
       Top = 16
       Width = 80
       Height = 25
@@ -219,7 +219,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       TabOrder = 5
     end
     object btnCancelar: TBitBtn
-      Left = 167
+      Left = 165
       Top = 16
       Width = 80
       Height = 25

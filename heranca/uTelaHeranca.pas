@@ -44,7 +44,6 @@ type
     procedure mskPesquisaChange(Sender: TObject);
     procedure grdListagemDblClick(Sender: TObject);
   private
-    EstadoDoCadastro:TEstadoDoCadastro;
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
       btnApagar: TBitBtn; btnNavigator: TDBNavigator;
       pgcPrincipal: TPageControl; Flag: Boolean);
@@ -57,9 +56,10 @@ type
     { Private declarations }
   public
     { Public declarations }
+    EstadoDoCadastro:TEstadoDoCadastro;
     IndiceAtual:string;
     function Gravar(EstadoDoCadastro:TEstadoDoCadastro):boolean; virtual;
-    function Excluir:Boolean; virtual;
+    function Apagar:Boolean; virtual;
 
   end;
 
@@ -160,7 +160,7 @@ begin
       showmessage('Nada aconteceu');
 end;
 
-function TfrmTelaHeranca.Excluir: Boolean;
+function TfrmTelaHeranca.Apagar: Boolean;
 begin
   showmessage('Apagar');
 end;
@@ -260,6 +260,7 @@ begin
        ControlaIndiceTab(pgcPrincipal, 0);
        EstadoDoCadastro:=ecNenhum;
        LimparEdits;
+       QryListagem.Refresh;
     end
     else begin
       MessageDlg('Erro ao Gravar', mtWarning,[mbOK],0);
@@ -272,10 +273,11 @@ end;
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
   try
-    if (Excluir) then begin
+    if (Apagar) then begin
        ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
        ControlaIndiceTab(pgcPrincipal, 0);
        LimparEdits;
+       QryListagem.Refresh;
     end
     else begin
       MessageDlg('Erro ao Gravar', mtWarning,[mbOK],0);

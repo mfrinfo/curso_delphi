@@ -3,7 +3,7 @@ inherited frmCadCategoria: TfrmCadCategoria
   ClientHeight = 342
   ClientWidth = 773
   ExplicitWidth = 779
-  ExplicitHeight = 371
+  ExplicitHeight = 370
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlRodaPe: TPanel
@@ -27,6 +27,8 @@ inherited frmCadCategoria: TfrmCadCategoria
       ExplicitWidth = 771
       ExplicitHeight = 288
       inherited tabListagem: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 763
         ExplicitHeight = 260
         inherited pnlListagemTop: TPanel
@@ -84,7 +86,6 @@ inherited frmCadCategoria: TfrmCadCategoria
           EditLabel.Height = 13
           EditLabel.Caption = 'Descri'#231#227'o'
           MaxLength = 30
-          NumbersOnly = True
           TabOrder = 1
         end
       end

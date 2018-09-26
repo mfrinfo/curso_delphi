@@ -24,6 +24,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       Caption = '&CADASTRO'
       object Cliente1: TMenuItem
         Caption = '&CLIENTE'
+        OnClick = Cliente1Click
       end
       object N1: TMenuItem
         Caption = '-'

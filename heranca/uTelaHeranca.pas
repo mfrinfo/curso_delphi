@@ -21,7 +21,7 @@ type
     btnGravar: TBitBtn;
     btnApagar: TBitBtn;
     btnFechar: TBitBtn;
-    pnlListagemTop: TPanel;
+    pnlListagemTopo: TPanel;
     pnlListagemCentro: TPanel;
     grdListagem: TDBGrid;
     mskPesquisa: TMaskEdit;

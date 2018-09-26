@@ -272,13 +272,14 @@ object frmTelaHeranca: TfrmTelaHeranca
       TabOrder = 0
       object tabListagem: TTabSheet
         Caption = 'Listagem'
-        object pnlListagemTop: TPanel
+        object pnlListagemTopo: TPanel
           Left = 0
           Top = 0
           Width = 854
           Height = 60
           Align = alTop
           TabOrder = 0
+          ExplicitTop = -5
           object lblIndice: TLabel
             Left = 4
             Top = 9

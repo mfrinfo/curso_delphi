@@ -27,6 +27,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FECHAR1Click(Sender: TObject);
     procedure CATEGORIAS1Click(Sender: TObject);
+    procedure Cliente1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter:TMREnter;
@@ -41,7 +42,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCadCategorias;
+uses uCadCategorias, uCadCliente;
 
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
@@ -49,6 +50,13 @@ begin
   frmCadCategoria:=TfrmCadCategoria.Create(Self);
   frmCadCategoria.ShowModal;
   frmCadCategoria.Release;
+end;
+
+procedure TfrmMenuPrincipal.Cliente1Click(Sender: TObject);
+begin
+  frmCadCliente:=TfrmCadCliente.Create(Self);
+  frmCadCliente.ShowModal;
+  frmCadCliente.Release;
 end;
 
 procedure TfrmMenuPrincipal.FECHAR1Click(Sender: TObject);

@@ -27,14 +27,8 @@ inherited frmCadCategoria: TfrmCadCategoria
       ExplicitWidth = 771
       ExplicitHeight = 288
       inherited tabListagem: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 763
         ExplicitHeight = 260
-        inherited pnlListagemTop: TPanel
-          Width = 763
-          ExplicitWidth = 763
-        end
         inherited pnlListagemCentro: TPanel
           Width = 763
           Height = 200

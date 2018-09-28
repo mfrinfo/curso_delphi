@@ -34,7 +34,6 @@ inherited frmCadCliente: TfrmCadCliente
         ExplicitHeight = 305
         inherited pnlListagemTopo: TPanel
           Width = 814
-          ExplicitTop = 0
           ExplicitWidth = 814
         end
         inherited pnlListagemCentro: TPanel
@@ -45,6 +44,47 @@ inherited frmCadCliente: TfrmCadCliente
           inherited grdListagem: TDBGrid
             Width = 812
             Height = 243
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'clienteId'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'nome'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'endereco'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cidade'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'bairro'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'estado'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'cep'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'telefone'
+                Visible = True
+              end>
           end
         end
       end
@@ -151,15 +191,6 @@ inherited frmCadCliente: TfrmCadCliente
           TabOrder = 2
           Text = '  .   -   '
         end
-        object edtDataNascimento: TDateTimePicker
-          Left = 8
-          Top = 262
-          Width = 186
-          Height = 21
-          Date = 43368.930460821760000000
-          Time = 43368.930460821760000000
-          TabOrder = 8
-        end
         object edtTelefone: TMaskEdit
           Left = 512
           Top = 168
@@ -169,6 +200,15 @@ inherited frmCadCliente: TfrmCadCliente
           MaxLength = 14
           TabOrder = 6
           Text = '(  )     -    '
+        end
+        object edtDataNascimento: TDateEdit
+          Left = 8
+          Top = 264
+          Width = 121
+          Height = 21
+          ClickKey = 114
+          NumGlyphs = 2
+          TabOrder = 8
         end
       end
     end

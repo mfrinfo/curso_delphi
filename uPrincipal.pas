@@ -28,6 +28,7 @@ type
     procedure FECHAR1Click(Sender: TObject);
     procedure CATEGORIAS1Click(Sender: TObject);
     procedure Cliente1Click(Sender: TObject);
+    procedure PRODUTO1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter:TMREnter;
@@ -42,7 +43,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCadCategorias, uCadCliente;
+uses uCadCategorias, uCadCliente, uCadProdutos;
 
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
@@ -117,6 +118,13 @@ begin
   TeclaEnter.FocusEnabled:=True;
   TeclaEnter.FocusColor:=clInfoBk;
 
+end;
+
+procedure TfrmMenuPrincipal.PRODUTO1Click(Sender: TObject);
+begin
+  frmCadProduto:=TfrmCadProduto.Create(Self);
+  frmCadProduto.ShowModal;
+  frmCadProduto.Release;
 end;
 
 end.

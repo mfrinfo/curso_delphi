@@ -7,7 +7,7 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,
-  uEnum, cCadCliente, uDtmPrincipal;
+  uEnum, cCadCliente, uDtmPrincipal, RxToolEdit;
 
 type
   TfrmCadCliente = class(TfrmTelaHeranca)
@@ -28,11 +28,11 @@ type
     edtBairro: TLabeledEdit;
     edtEmail: TLabeledEdit;
     edtCEP: TMaskEdit;
-    edtDataNascimento: TDateTimePicker;
     Label1: TLabel;
     edtTelefone: TMaskEdit;
     Label2: TLabel;
     Label3: TLabel;
+    edtDataNascimento: TDateEdit;
     procedure btnAlterarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -54,6 +54,7 @@ implementation
 {$R *.dfm}
 
 { TfrmCadCliente }
+
 {$region 'Override'}
 function TfrmCadCliente.Apagar: Boolean;
 begin
@@ -61,6 +62,29 @@ begin
      Result:=oCliente.Apagar;
   end;
 end;
+
+function TfrmCadCliente.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
+begin
+  if edtClienteId.Text<>EmptyStr then
+     oCliente.codigo:=StrToInt(edtClienteId.Text)
+  else
+     oCliente.codigo:=0;
+
+  oCliente.nome           :=edtNome.Text;
+  oCliente.cep            :=edtCEP.Text;
+  oCliente.endereco       :=edtEndereco.Text;
+  oCliente.bairro         :=edtBairro.Text;
+  oCliente.cidade         :=edtCidade.Text;
+  oCliente.telefone       :=edtTelefone.Text;
+  oCliente.email          :=edtEmail.Text;
+  oCliente.dataNascimento :=edtDataNascimento.Date;
+
+  if (EstadoDoCadastro=ecInserir) then
+     Result:=oCliente.Inserir
+  else if (EstadoDoCadastro=ecAlterar) then
+     Result:=oCliente.Atualizar;
+end;
+{$endregion}
 
 procedure TfrmCadCliente.btnAlterarClick(Sender: TObject);
 begin
@@ -73,7 +97,7 @@ begin
      edtCidade.Text   :=oCliente.cidade;
      edtTelefone.Text :=oCliente.telefone;
      edtEmail.Text    :=oCliente.email;
-     edtDataNascimento.DateTime:=oCliente.dataNascimento;
+     edtDataNascimento.Date:=oCliente.dataNascimento;
 
   end
   else begin
@@ -85,11 +109,11 @@ begin
 
 end;
 
-{$endregion}
+
 procedure TfrmCadCliente.btnNovoClick(Sender: TObject);
 begin
   inherited;
-  edtDataNascimento.DateTime:=Date;
+  edtDataNascimento.Date:=Date;
   edtNome.SetFocus;
 end;
 
@@ -109,27 +133,7 @@ begin
 
 end;
 
-function TfrmCadCliente.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
-begin
-  if edtClienteId.Text<>EmptyStr then
-     oCliente.codigo:=StrToInt(edtClienteId.Text)
-  else
-     oCliente.codigo:=0;
 
-  oCliente.nome           :=edtNome.Text;
-  oCliente.cep            :=edtCEP.Text;
-  oCliente.endereco       :=edtEndereco.Text;
-  oCliente.bairro         :=edtBairro.Text;
-  oCliente.cidade         :=edtCidade.Text;
-  oCliente.telefone       :=edtTelefone.Text;
-  oCliente.email          :=edtEmail.Text;
-  oCliente.dataNascimento :=edtDataNascimento.DateTime;
-
-  if (EstadoDoCadastro=ecInserir) then
-     Result:=oCliente.Inserir
-  else if (EstadoDoCadastro=ecAlterar) then
-     Result:=oCliente.Atualizar;
-end;
 
 
 end.

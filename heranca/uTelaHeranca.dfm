@@ -267,7 +267,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Top = 1
       Width = 862
       Height = 424
-      ActivePage = tabListagem
+      ActivePage = tabManutencao
       Align = alClient
       TabOrder = 0
       object tabListagem: TTabSheet
@@ -279,7 +279,6 @@ object frmTelaHeranca: TfrmTelaHeranca
           Height = 60
           Align = alTop
           TabOrder = 0
-          ExplicitTop = -5
           object lblIndice: TLabel
             Left = 4
             Top = 9

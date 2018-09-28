@@ -35,6 +35,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       end
       object PRODUTO1: TMenuItem
         Caption = '&PRODUTO'
+        OnClick = PRODUTO1Click
       end
       object N2: TMenuItem
         Caption = '-'

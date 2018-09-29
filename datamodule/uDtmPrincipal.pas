@@ -3,11 +3,17 @@ unit uDtmPrincipal;
 interface
 
 uses
-  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Vcl.forms;
+  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Vcl.forms,
+  Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset;
 
 type
   TDtmPrincipal = class(TDataModule)
     ConexaoDB: TZConnection;
+    QryScriptCategorias: TZQuery;
+    QryScriptClientes: TZQuery;
+    QryScriptProdutos: TZQuery;
+    QryScriptItensVendas: TZQuery;
+    QryScriptVendas: TZQuery;
 
 
   private

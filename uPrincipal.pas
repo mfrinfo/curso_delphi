@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDtmPrincipal, Enter;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDtmPrincipal, Enter,
+  ufrmAtualizaDB;
 
 type
   TfrmMenuPrincipal = class(TForm)
@@ -32,6 +33,7 @@ type
   private
     { Private declarations }
     TeclaEnter:TMREnter;
+    procedure AtualizacaoBancoDados(aForm: TfrmAtualizaBancoDados);
   public
     { Public declarations }
   end;
@@ -101,6 +103,10 @@ begin
   end;
   }
 
+  frmAtualizaBancoDados:=TfrmAtualizaBancoDados.Create(self);
+  frmAtualizaBancoDados.Show;
+  frmAtualizaBancoDados.Refresh;
+
   DtmPrincipal:=TDtmPrincipal.Create(self);     //Instancia o DataModule
   with DtmPrincipal.ConexaoDB do begin
     SQLHourGlass:=False;    //Habilita o Cursor em cada transação no banco de dados
@@ -113,7 +119,9 @@ begin
     Database:='vendas';  //Nome do Banco de Dados
     Connected:=True;  //Faz a Conexão do Banco
   end;
+  AtualizacaoBancoDados(frmAtualizaBancoDados);
 
+  frmAtualizaBancoDados.Free;
   TeclaEnter:=TMREnter.Create(Self);
   TeclaEnter.FocusEnabled:=True;
   TeclaEnter.FocusColor:=clInfoBk;
@@ -125,6 +133,33 @@ begin
   frmCadProduto:=TfrmCadProduto.Create(Self);
   frmCadProduto.ShowModal;
   frmCadProduto.Release;
+end;
+
+procedure TfrmMenuPrincipal.AtualizacaoBancoDados(aForm:TfrmAtualizaBancoDados);
+begin
+  aForm.chkConexao.Checked := true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptCategorias.ExecSQL;
+  aForm.chkCategoria.Checked := true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptClientes.ExecSQL;
+  aForm.chkCliente.Checked := true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptProdutos.ExecSQL;
+  aForm.chkProduto.Checked := true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptVendas.ExecSQL;
+  aForm.chkVendas.Checked := true;
+  aForm.Refresh;
+  Sleep(100);
+  DtmPrincipal.QryScriptItensVendas.ExecSQL;
+  aForm.chkItensVendas.Checked := true;
+  aForm.Refresh;
+  Sleep(100);
 end;
 
 end.

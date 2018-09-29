@@ -123,6 +123,15 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="classes\cCadProduto.pas"/>
+        <DCCReference Include="datamodule\uDtmVendas.pas">
+            <Form>dtmVendas</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="datamodule\ufrmAtualizaDB.pas">
+            <Form>frmAtualizaBancoDados</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

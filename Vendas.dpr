@@ -12,7 +12,9 @@ uses
   uCadCliente in 'cadastros\uCadCliente.pas' {frmCadCliente},
   cCadCliente in 'classes\cCadCliente.pas',
   uCadProdutos in 'cadastros\uCadProdutos.pas' {frmCadProduto},
-  cCadProduto in 'classes\cCadProduto.pas';
+  cCadProduto in 'classes\cCadProduto.pas',
+  uDtmVendas in 'datamodule\uDtmVendas.pas' {dtmVendas: TDataModule},
+  ufrmAtualizaDB in 'datamodule\ufrmAtualizaDB.pas' {frmAtualizaBancoDados};
 
 {$R *.res}
 

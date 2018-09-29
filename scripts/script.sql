@@ -46,6 +46,7 @@ BEGIN
 	  vendaId int identity(1,1) not null,
 	  clienteId int not null,
 	  dataVenda datetime default getdate(),
+	  totalVenda decimal(18,5) default 0.00000,
 
 
 	  PRIMARY KEY (vendaId),
@@ -59,7 +60,6 @@ BEGIN
 	Create table vendasItens (
 	  vendaId int not null,
 	  produtoId int not null,
-	  dataVenda datetime default getdate(),
 	  valorUnitario decimal (18,5) default 0.00000,
 	  quantidade decimal (18,5) default 0.00000,
 	  totalProduto decimal (18,5) default 0.00000,

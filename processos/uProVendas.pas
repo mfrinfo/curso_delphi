@@ -66,7 +66,9 @@ uses uDtmPrincipal;
 {$region 'Override'}
 function TfrmProVenda.Apagar: Boolean;
 begin
-  Result:=oVenda.Apagar(QryListagem.FieldByName('vendaId').AsInteger);
+  if oVenda.Selecionar(QryListagem.FieldByName('vendaId').AsInteger) then begin
+     Result:=oVenda.Apagar;
+  end;
 end;
 
 function TfrmProVenda.Gravar(EstadoDoCadastro: TEstadoDoCadastro): boolean;

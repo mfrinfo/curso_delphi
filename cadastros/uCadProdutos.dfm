@@ -15,7 +15,7 @@ inherited frmCadProduto: TfrmCadProduto
   inherited pnlRodaPe: TPanel
     Top = 347
     Width = 862
-    ExplicitTop = 369
+    ExplicitTop = 347
     ExplicitWidth = 862
     inherited btnFechar: TBitBtn
       Left = 783
@@ -29,15 +29,18 @@ inherited frmCadProduto: TfrmCadProduto
     Width = 862
     Height = 347
     ExplicitWidth = 862
-    ExplicitHeight = 369
+    ExplicitHeight = 347
     inherited pgcPrincipal: TPageControl
       Width = 860
       Height = 345
+      ActivePage = tabManutencao
       ExplicitWidth = 860
-      ExplicitHeight = 367
+      ExplicitHeight = 345
       inherited tabListagem: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 852
-        ExplicitHeight = 339
+        ExplicitHeight = 317
         inherited pnlListagemTopo: TPanel
           Width = 852
           ExplicitWidth = 852
@@ -46,7 +49,7 @@ inherited frmCadProduto: TfrmCadProduto
           Width = 852
           Height = 257
           ExplicitWidth = 852
-          ExplicitHeight = 279
+          ExplicitHeight = 257
           inherited grdListagem: TDBGrid
             Width = 850
             Height = 255
@@ -87,9 +90,10 @@ inherited frmCadProduto: TfrmCadProduto
         end
       end
       inherited tabManutencao: TTabSheet
-        ExplicitTop = 23
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 852
-        ExplicitHeight = 339
+        ExplicitHeight = 317
         object Label1: TLabel
           Left = 8
           Top = 107

@@ -27,7 +27,7 @@ type
     destructor Destroy; override;
     function Inserir:Boolean;
     function Atualizar:Boolean;
-    function Apagar(id:Integer):Boolean;
+    function Apagar:Boolean;
     function Selecionar(id:Integer):Boolean;
   published
     property VendaId:Integer     read F_vendaId    write F_vendaId;
@@ -55,11 +55,11 @@ end;
 {$endRegion}
 
 {$region 'CRUD'}
-function TVenda.Apagar(id:Integer): Boolean;
+function TVenda.Apagar: Boolean;
 var Qry:TZQuery;
 begin
   if MessageDlg('Apagar o Registro: '+#13+#13+
-                'Venda Nro: '+IntToStr(VendaId),mtConfirmation,[mbYes, mbNo],0)=mrNo then begin
+                'Venda Nro: '+IntToStr(F_VendaId),mtConfirmation,[mbYes, mbNo],0)=mrNo then begin
      Result:=false;
      abort;
   end;
@@ -72,14 +72,14 @@ begin
     Qry.SQL.Clear;
     Qry.SQL.Add('DELETE FROM vendasItens '+
                 ' WHERE vendaId=:vendaId ');
-    Qry.ParamByName('vendaId').AsInteger :=id;
+    Qry.ParamByName('vendaId').AsInteger :=F_VendaId;
     Try
       Qry.ExecSQL;
       //Apaga a Tabela Master
       Qry.SQL.Clear;
       Qry.SQL.Add('DELETE FROM vendas '+
                   ' WHERE vendaId=:vendaId ');
-      Qry.ParamByName('vendaId').AsInteger :=id;
+      Qry.ParamByName('vendaId').AsInteger :=F_VendaId;
       Qry.ExecSQL;
 
     Except

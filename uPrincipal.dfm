@@ -17,6 +17,21 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 8
+    Width = 307
+    Height = 19
+    Cursor = crHandPoint
+    Caption = 'Curso de Delphi com SQL-Server na Pr'#225'tica'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = Label1Click
+  end
   object MainMenu1: TMainMenu
     Left = 120
     Top = 24
@@ -49,6 +64,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       Caption = '&MOVIMENTA'#199#195'O'
       object VENDA1: TMenuItem
         Caption = '&VENDA'
+        OnClick = VENDA1Click
       end
     end
     object RELATRIOS1: TMenuItem

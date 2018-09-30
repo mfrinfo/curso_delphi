@@ -132,6 +132,11 @@
             <Form>frmAtualizaBancoDados</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="processos\uProVendas.pas">
+            <Form>frmProVenda</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="classes\cProVenda.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

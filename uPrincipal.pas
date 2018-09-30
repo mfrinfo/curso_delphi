@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDtmPrincipal, Enter,
-  ufrmAtualizaDB;
+  ufrmAtualizaDB, ShellApi, Vcl.ExtCtrls, Vcl.StdCtrls;
 
 type
   TfrmMenuPrincipal = class(TForm)
@@ -24,12 +24,15 @@ type
     PRODUTO2: TMenuItem;
     N3: TMenuItem;
     VENDAPORDIA1: TMenuItem;
+    Label1: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FECHAR1Click(Sender: TObject);
     procedure CATEGORIAS1Click(Sender: TObject);
     procedure Cliente1Click(Sender: TObject);
     procedure PRODUTO1Click(Sender: TObject);
+    procedure VENDA1Click(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter:TMREnter;
@@ -45,7 +48,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCadCategorias, uCadCliente, uCadProdutos;
+uses uCadCategorias, uCadCliente, uCadProdutos, uProVendas;
 
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
@@ -128,11 +131,23 @@ begin
 
 end;
 
+procedure TfrmMenuPrincipal.Label1Click(Sender: TObject);
+begin
+  ShellExecute(Handle,'open','https://www.udemy.com/desenvolver-sistema-com-delphi-e-sql-server-na-pratica/',nil,nil,SW_SHOW);
+end;
+
 procedure TfrmMenuPrincipal.PRODUTO1Click(Sender: TObject);
 begin
   frmCadProduto:=TfrmCadProduto.Create(Self);
   frmCadProduto.ShowModal;
   frmCadProduto.Release;
+end;
+
+procedure TfrmMenuPrincipal.VENDA1Click(Sender: TObject);
+begin
+  frmProVenda:=TfrmProVenda.Create(Self);
+  frmProVenda.ShowModal;
+  frmProVenda.Release;
 end;
 
 procedure TfrmMenuPrincipal.AtualizacaoBancoDados(aForm:TfrmAtualizaBancoDados);

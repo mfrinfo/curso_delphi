@@ -267,7 +267,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Top = 1
       Width = 862
       Height = 424
-      ActivePage = tabManutencao
+      ActivePage = tabListagem
       Align = alClient
       TabOrder = 0
       object tabListagem: TTabSheet
@@ -354,6 +354,7 @@ object frmTelaHeranca: TfrmTelaHeranca
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
             OnDblClick = grdListagemDblClick
+            OnKeyDown = grdListagemKeyDown
             OnTitleClick = grdListagemTitleClick
           end
         end

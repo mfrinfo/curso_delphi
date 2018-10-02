@@ -61,6 +61,8 @@ type
     procedure CarregarRegistroSelecionado;
     procedure LimparComponenteItem;
     procedure LimparCds;
+    function TotalizarVenda: Double;
+
   public
     { Public declarations }
   end;
@@ -101,7 +103,11 @@ end;
 procedure TfrmProVenda.lkpProdutoExit(Sender: TObject);
 begin
   inherited;
-  edtValorUnitario.Value:=dtmVendas.QryProduto.FieldByName('valor').AsFloat;
+  if lkpProduto.KeyValue=Null then begin
+    edtValorUnitario.Value:=dtmVendas.QryProduto.FieldByName('valor').AsFloat;
+    edtQuantidade.Value:=1;
+    edtTotalProduto.Value:=TotalizarProduto(edtValorUnitario.Value, edtQuantidade.Value);
+  end;
 end;
 
 {$endregion}
@@ -143,8 +149,8 @@ begin
   dtmVendas.cdsItensVenda.FieldByName('valorUnitario').AsFloat:=edtValorUnitario.Value;
   dtmVendas.cdsItensVenda.FieldByName('valorTotalProduto').AsFloat:=edtTotalProduto.Value;
   dtmVendas.cdsItensVenda.Post;
+  edtValorTotal.Value:=TotalizarVenda;
   LimparComponenteItem;
-
   lkpProduto.SetFocus;
 end;
 
@@ -178,6 +184,7 @@ begin
      LimparComponenteItem;
   end;
 
+  edtValorTotal.Value:=TotalizarVenda;
 end;
 
 procedure TfrmProVenda.btnCancelarClick(Sender: TObject);
@@ -267,6 +274,16 @@ begin
   while not dtmVendas.cdsItensVenda.Eof do
     dtmVendas.cdsItensVenda.Delete;
 
+end;
+
+function TfrmProVenda.TotalizarVenda:Double;
+begin
+  result:=0;
+  dtmVendas.cdsItensVenda.First;
+  while not dtmVendas.cdsItensVenda.Eof do begin
+    result := result + dtmVendas.cdsItensVenda.FieldByName('valorTotalProduto').AsFloat;
+    dtmVendas.cdsItensVenda.Next;
+  end;
 end;
 
 end.

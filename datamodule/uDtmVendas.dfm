@@ -95,12 +95,6 @@ object dtmVendas: TdtmVendas
       FieldName = 'valorTotalProduto'
       DisplayFormat = '#0.00'
     end
-    object cdsItensVendavalorTotalVenda: TAggregateField
-      FieldName = 'valorTotalVenda'
-      DisplayName = ''
-      DisplayFormat = '#0.00'
-      Expression = 'SUM(ValorTotalProduto)'
-    end
   end
   object dtsItensVenda: TDataSource
     DataSet = cdsItensVenda

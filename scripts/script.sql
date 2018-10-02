@@ -73,7 +73,7 @@ END
 
 
 --Limpar as Tabelas
-  
+  delete from vendasItens  
 
   delete from vendas
   DBCC CHECKIDENT('vendas', RESEED, 0)

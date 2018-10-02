@@ -11,6 +11,10 @@ inherited frmProVenda: TfrmProVenda
     inherited pgcPrincipal: TPageControl
       ActivePage = tabManutencao
       inherited tabListagem: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 854
+        ExplicitHeight = 396
         inherited pnlListagemCentro: TPanel
           inherited grdListagem: TDBGrid
             Columns = <
@@ -48,6 +52,10 @@ inherited frmProVenda: TfrmProVenda
         end
       end
       inherited tabManutencao: TTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 854
+        ExplicitHeight = 396
         object Label1: TLabel
           Left = 195
           Top = 16
@@ -107,7 +115,7 @@ inherited frmProVenda: TfrmProVenda
             Height = 216
             Align = alClient
             TabOrder = 0
-            object DBGrid1: TDBGrid
+            object dbgridItensVenda: TDBGrid
               Left = 1
               Top = 1
               Width = 836
@@ -121,7 +129,8 @@ inherited frmProVenda: TfrmProVenda
               TitleFont.Height = -11
               TitleFont.Name = 'Tahoma'
               TitleFont.Style = []
-              OnKeyDown = DBGrid1KeyDown
+              OnDblClick = dbgridItensVendaDblClick
+              OnKeyDown = dbgridItensVendaKeyDown
               Columns = <
                 item
                   Expanded = False
@@ -228,6 +237,7 @@ inherited frmProVenda: TfrmProVenda
               ListField = 'nome'
               ListSource = dtmVendas.dtsProduto
               TabOrder = 0
+              OnExit = lkpProdutoExit
             end
             object edtQuantidade: TCurrencyEdit
               Left = 467
@@ -235,7 +245,8 @@ inherited frmProVenda: TfrmProVenda
               Width = 76
               Height = 21
               DisplayFormat = ',0.00;-,0.00'
-              TabOrder = 1
+              TabOrder = 2
+              OnExit = edtQuantidadeExit
             end
             object edtValorUnitario: TCurrencyEdit
               Left = 366
@@ -243,13 +254,14 @@ inherited frmProVenda: TfrmProVenda
               Width = 91
               Height = 21
               DisplayFormat = ',0.00;-,0.00'
-              TabOrder = 2
+              TabOrder = 1
             end
             object edtTotalProduto: TCurrencyEdit
               Left = 551
               Top = 28
               Width = 98
               Height = 21
+              TabStop = False
               DisplayFormat = ',0.00;-,0.00'
               ParentColor = True
               ReadOnly = True
@@ -289,6 +301,7 @@ inherited frmProVenda: TfrmProVenda
                 17BF6F17FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
                 00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
               TabOrder = 4
+              OnClick = btnAdicionarItemClick
             end
             object btnApagarItem: TBitBtn
               Left = 745
@@ -324,6 +337,8 @@ inherited frmProVenda: TfrmProVenda
                 FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
                 00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
               TabOrder = 5
+              TabStop = False
+              OnClick = btnApagarItemClick
             end
           end
         end

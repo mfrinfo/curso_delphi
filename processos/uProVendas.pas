@@ -79,7 +79,7 @@ uses uDtmPrincipal;
 {$region 'Override'}
 function TfrmProVenda.Apagar: Boolean;
 begin
-  if oVenda.Selecionar(QryListagem.FieldByName('vendaId').AsInteger) then begin
+  if oVenda.Selecionar(QryListagem.FieldByName('vendaId').AsInteger, dtmVendas.cdsItensVenda) then begin
      Result:=oVenda.Apagar;
   end;
 end;
@@ -96,14 +96,14 @@ begin
   oVenda.TotalVenda       :=edtValorTotal.Value;
 
   if (EstadoDoCadastro=ecInserir) then
-     Result:=oVenda.Inserir
+     Result:=oVenda.Inserir(dtmVendas.cdsItensVenda)
   else if (EstadoDoCadastro=ecAlterar) then
-     Result:=oVenda.Atualizar;
+     Result:=oVenda.Atualizar(dtmVendas.cdsItensVenda);
 end;
 procedure TfrmProVenda.lkpProdutoExit(Sender: TObject);
 begin
   inherited;
-  if lkpProduto.KeyValue=Null then begin
+  if lkpProduto.KeyValue<>Null then begin
     edtValorUnitario.Value:=dtmVendas.QryProduto.FieldByName('valor').AsFloat;
     edtQuantidade.Value:=1;
     edtTotalProduto.Value:=TotalizarProduto(edtValorUnitario.Value, edtQuantidade.Value);
@@ -156,7 +156,7 @@ end;
 
 procedure TfrmProVenda.btnAlterarClick(Sender: TObject);
 begin
-  if oVenda.Selecionar(QryListagem.FieldByName('vendaId').AsInteger) then begin
+  if oVenda.Selecionar(QryListagem.FieldByName('vendaId').AsInteger, dtmVendas.cdsItensVenda) then begin
      edtVendaId.Text     :=IntToStr(oVenda.VendaId);
      lkpCliente.KeyValue :=oVenda.ClienteId;
      edtDataVenda.Date   :=oVenda.DataVenda;

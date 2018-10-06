@@ -335,7 +335,7 @@ begin
                   '       VendasItens.TotalProduto '+
                   '  FROM VendasItens  '+
                   '       INNER JOIN produtos On Produtos.produtoId = VendasItens.produtoId '+
-                  ' WHERE VendaID=:VendaID ');
+                  ' WHERE VendasItens.VendaID=:VendaID ');
       Qry.ParamByName('VendaID').AsInteger    := Self.F_vendaId;
       Qry.Open;
 
@@ -351,6 +351,7 @@ begin
         cds.Post;
         Qry.Next;
       end;
+      cds.First;
 
       {$endRegion}
 

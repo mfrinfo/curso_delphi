@@ -271,6 +271,7 @@ end;
 
 procedure TfrmProVenda.LimparCds;
 begin
+  dtmVendas.cdsItensVenda.First;
   while not dtmVendas.cdsItensVenda.Eof do
     dtmVendas.cdsItensVenda.Delete;
 

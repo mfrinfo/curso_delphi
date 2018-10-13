@@ -138,6 +138,30 @@
         </DCCReference>
         <DCCReference Include="classes\cProVenda.pas"/>
         <DCCReference Include="classes\cControleEstoque.pas"/>
+        <DCCReference Include="relatorios\uRelProVendaPorData.pas">
+            <Form>frmRelProVendaPorData</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorios\uRelCadClientesFicha.pas">
+            <Form>frmRelCadClientesFicha</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorios\uRelCadCategorias.pas">
+            <Form>frmRelCadCategorias</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorios\uRelCadClientes.pas">
+            <Form>frmRelCadClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorios\uRelCadProdutos.pas">
+            <Form>frmRelCadProdutos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="relatorios\uRelCadProdutosComGrupoCategoria.pas">
+            <Form>frmRelCadProdutosComGrupoCategoria</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

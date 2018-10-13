@@ -17,20 +17,66 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 8
-    Top = 8
-    Width = 307
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1107
+    Height = 57
+    Align = alTop
+    TabOrder = 0
+    ExplicitTop = -5
+    object Label1: TLabel
+      Left = 8
+      Top = 17
+      Width = 307
+      Height = 19
+      Cursor = crHandPoint
+      Caption = 'Curso de Delphi com SQL-Server na Pr'#225'tica'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentFont = False
+      OnClick = Label1Click
+    end
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 565
+    Width = 1107
     Height = 19
-    Cursor = crHandPoint
-    Caption = 'Curso de Delphi com SQL-Server na Pr'#225'tica'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clNavy
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsUnderline]
-    ParentFont = False
-    OnClick = Label1Click
+    Panels = <>
+    ExplicitLeft = 536
+    ExplicitTop = 424
+    ExplicitWidth = 0
+  end
+  object GridPanel1: TGridPanel
+    Left = 0
+    Top = 57
+    Width = 1107
+    Height = 508
+    Align = alClient
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <>
+    RowCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    TabOrder = 2
+    ExplicitLeft = 704
+    ExplicitTop = 336
+    ExplicitWidth = 185
+    ExplicitHeight = 41
   end
   object MainMenu1: TMainMenu
     Left = 120
@@ -69,17 +115,32 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     end
     object RELATRIOS1: TMenuItem
       Caption = '&RELAT'#211'RIO'
+      object CATEGORIAS2: TMenuItem
+        Caption = 'CATEGORIA'
+        OnClick = CATEGORIAS2Click
+      end
       object CLIENTE2: TMenuItem
         Caption = '&CLIENTE'
+        OnClick = CLIENTE2Click
+      end
+      object FICHADECLIENTE1: TMenuItem
+        Caption = 'FICHA DE CLIENTE'
+        OnClick = FICHADECLIENTE1Click
       end
       object PRODUTO2: TMenuItem
         Caption = '&PRODUTO'
+        OnClick = PRODUTO2Click
+      end
+      object PRODUTOSPORCATEGORIAS1: TMenuItem
+        Caption = 'PRODUTOS POR CATEGORIAS'
+        OnClick = PRODUTOSPORCATEGORIAS1Click
       end
       object N3: TMenuItem
         Caption = '-'
       end
       object VENDAPORDIA1: TMenuItem
         Caption = '&VENDA POR DATA'
+        OnClick = VENDAPORDIA1Click
       end
     end
   end

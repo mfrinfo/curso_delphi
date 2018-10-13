@@ -17,7 +17,13 @@ uses
   ufrmAtualizaDB in 'datamodule\ufrmAtualizaDB.pas' {frmAtualizaBancoDados},
   uProVendas in 'processos\uProVendas.pas' {frmProVenda},
   cProVenda in 'classes\cProVenda.pas',
-  cControleEstoque in 'classes\cControleEstoque.pas';
+  cControleEstoque in 'classes\cControleEstoque.pas',
+  uRelProVendaPorData in 'relatorios\uRelProVendaPorData.pas' {frmRelProVendaPorData},
+  uRelCadClientesFicha in 'relatorios\uRelCadClientesFicha.pas' {frmRelCadClientesFicha},
+  uRelCadCategorias in 'relatorios\uRelCadCategorias.pas' {frmRelCadCategorias},
+  uRelCadClientes in 'relatorios\uRelCadClientes.pas' {frmRelCadClientes},
+  uRelCadProdutos in 'relatorios\uRelCadProdutos.pas' {frmRelCadProdutos},
+  uRelCadProdutosComGrupoCategoria in 'relatorios\uRelCadProdutosComGrupoCategoria.pas' {frmRelCadProdutosComGrupoCategoria};
 
 {$R *.res}
 

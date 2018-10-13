@@ -47,7 +47,7 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
       end
       object RLDraw1: TRLDraw
         Left = 3
-        Top = 38
+        Top = 42
         Width = 712
         Height = 7
         DrawKind = dkLine
@@ -56,14 +56,14 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
     end
     object Rodape: TRLBand
       Left = 38
-      Top = 208
+      Top = 217
       Width = 718
       Height = 36
       BandType = btFooter
       object RLSystemInfo3: TRLSystemInfo
         Left = 3
         Top = 17
-        Width = 201
+        Width = 183
         Height = 16
         Info = itFullDate
         Text = ''
@@ -121,11 +121,11 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
         Pen.Width = 2
       end
     end
-    object RLGroup1: TRLGroup
+    object BandaDoGrupo: TRLGroup
       Left = 38
       Top = 93
       Width = 718
-      Height = 115
+      Height = 124
       DataFields = 'categoriaId'
       Degrade.OppositeColor = clSilver
       FooterMeasuring = fmBeforeDetail
@@ -248,14 +248,14 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
         Left = 0
         Top = 66
         Width = 718
-        Height = 44
+        Height = 55
         BandType = btSummary
         Color = clWhite
         ParentColor = False
         Transparent = False
         object RLDBResult1: TRLDBResult
           Left = 608
-          Top = 4
+          Top = 14
           Width = 109
           Height = 16
           Alignment = taRightJustify
@@ -267,7 +267,7 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
         end
         object RLDBResult2: TRLDBResult
           Left = 624
-          Top = 24
+          Top = 34
           Width = 92
           Height = 16
           Alignment = taRightJustify
@@ -279,7 +279,7 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
         end
         object RLLabel9: TRLLabel
           Left = 363
-          Top = 4
+          Top = 14
           Width = 223
           Height = 16
           Caption = 'Quantidade Estoque por Categoria'
@@ -293,7 +293,7 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
         end
         object RLLabel10: TRLLabel
           Left = 394
-          Top = 24
+          Top = 34
           Width = 192
           Height = 16
           Caption = 'M'#233'dia de Valor por Categoria'
@@ -304,6 +304,13 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
           Font.Style = [fsBold]
           ParentFont = False
           Transparent = False
+        end
+        object RLDraw3: TRLDraw
+          Left = 344
+          Top = 6
+          Width = 371
+          Height = 7
+          DrawKind = dkLine
         end
       end
       object RLBand3: TRLBand
@@ -385,6 +392,7 @@ object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
   end
   object QryProdutos: TZQuery
     Connection = DtmPrincipal.ConexaoDB
+    Active = True
     SQL.Strings = (
       '  SELECT  produtos.produtoId, '
       '          produtos.Nome, '

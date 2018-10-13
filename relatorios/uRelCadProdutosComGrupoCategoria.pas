@@ -33,7 +33,7 @@ type
     QryProdutosQuantidade: TFloatField;
     QryProdutoscategoriaId: TIntegerField;
     QryProdutosDescricaoCategoria: TWideStringField;
-    RLGroup1: TRLGroup;
+    BandaDoGrupo: TRLGroup;
     RLBand2: TRLBand;
     RLDBText6: TRLDBText;
     RLDBText5: TRLDBText;
@@ -54,6 +54,7 @@ type
     RLLabel6: TRLLabel;
     RLLabel7: TRLLabel;
     RLLabel11: TRLLabel;
+    RLDraw3: TRLDraw;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private

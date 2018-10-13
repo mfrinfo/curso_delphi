@@ -40,7 +40,7 @@ begin
   end;
 
   if (EdtDataFinal.Date=0) OR (EdtDataInicio.Date=0) then begin
-    MessageDlg('Data Inicial ou Final é campo obrigatório',MtInformation,[mbok],0);
+    MessageDlg('Data Inicial ou Final são campo obrigatório',MtInformation,[mbok],0);
     EdtDataInicio.SetFocus;
     abort;
   end;

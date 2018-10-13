@@ -301,12 +301,12 @@ object frmRelCadClientesFicha: TfrmRelCadClientesFicha
         Pen.Style = psDot
       end
       object RLAngleLabel1: TRLAngleLabel
-        Left = 696
-        Top = 11
+        Left = 699
+        Top = 6
         Width = 16
-        Height = 121
+        Height = 122
         Angle = 90.000000000000000000
-        Caption = 'FICHA DE CLIENTE'
+        Caption = 'FICHA DO CLIENTE'
       end
       object RLImage1: TRLImage
         Left = 0

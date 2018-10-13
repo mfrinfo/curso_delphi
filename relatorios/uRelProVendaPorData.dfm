@@ -11,7 +11,6 @@ object frmRelProVendaPorData: TfrmRelProVendaPorData
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
@@ -338,23 +337,44 @@ object frmRelProVendaPorData: TfrmRelProVendaPorData
   end
   object QryVendas: TZQuery
     Connection = DtmPrincipal.ConexaoDB
-    Active = True
     SQL.Strings = (
       #9'SELECT vendas.vendaId,'
       #9'       vendas.clienteId,'
-      #9#9'   clientes.nome,'
-      #9#9'   vendas.dataVenda,'
-      #9#9'   vendas.totalVenda'
+      #9#9'     clientes.nome,'
+      #9#9'     vendas.dataVenda,'
+      #9#9'     vendas.totalVenda'
       #9'  FROM vendas'
       
         #9'       INNER JOIN clientes on clientes.clienteId = vendas.clien' +
         'teId'
+      '   WHERE vendas.dataVenda BETWEEN :DataInicio AND :DataFim'
       #9' ORDER BY vendas.dataVenda, clienteId'
       ''
       '')
-    Params = <>
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'DataInicio'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'DataFim'
+        ParamType = ptUnknown
+      end>
     Left = 520
     Top = 432
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'DataInicio'
+        ParamType = ptUnknown
+      end
+      item
+        DataType = ftUnknown
+        Name = 'DataFim'
+        ParamType = ptUnknown
+      end>
     object QryVendasvendaId: TIntegerField
       FieldName = 'vendaId'
       ReadOnly = True

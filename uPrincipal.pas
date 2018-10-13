@@ -64,7 +64,7 @@ implementation
 
 uses uCadCategorias, uCadCliente, uCadProdutos, uProVendas, uRelCadCategorias,
   uRelCadProdutos, uRelCadProdutosComGrupoCategoria, uRelCadClientes,
-  uRelCadClientesFicha, uRelProVendaPorData;
+  uRelCadClientesFicha, uRelProVendaPorData, uSelecionarData;
 
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
@@ -204,9 +204,22 @@ end;
 
 procedure TfrmMenuPrincipal.VENDAPORDIA1Click(Sender: TObject);
 begin
-  frmRelProVendaPorData:=TfrmRelProVendaPorData.Create(self);
-  frmRelProVendaPorData.Relatorio.PreviewModal;
-  frmRelProVendaPorData.Release;
+  Try
+    frmSelecionarData:=TfrmSelecionarData.Create(self);
+    frmSelecionarData.ShowModal;
+
+    frmRelProVendaPorData:=TfrmRelProVendaPorData.Create(self);
+    frmRelProVendaPorData.QryVendas.Close;
+    frmRelProVendaPorData.QryVendas.ParamByName('DataInicio').AsDate:=frmSelecionarData.EdtDataInicio.Date;
+    frmRelProVendaPorData.QryVendas.ParamByName('DataFim').AsDate:=frmSelecionarData.EdtDataFinal.Date;
+    frmRelProVendaPorData.QryVendas.Open;
+    frmRelProVendaPorData.Relatorio.PreviewModal;
+  Finally
+    frmSelecionarData.Release;
+    frmRelProVendaPorData.Release;
+  End;
+
+
 end;
 
 procedure TfrmMenuPrincipal.AtualizacaoBancoDados(aForm:TfrmAtualizaBancoDados);

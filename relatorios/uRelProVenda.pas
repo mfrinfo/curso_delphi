@@ -1,4 +1,4 @@
-unit uRelProVendaPorData;
+unit uRelProVenda;
 
 interface
 
@@ -9,7 +9,7 @@ uses
   RLXLSXFilter;
 
 type
-  TfrmRelProVendaPorData = class(TForm)
+  TfrmRelProVenda = class(TForm)
     Relatorio: TRLReport;
     Cabecalho: TRLBand;
     RLLabel1: TRLLabel;
@@ -31,16 +31,8 @@ type
     RLDBText5: TRLDBText;
     RLLabel8: TRLLabel;
     RegistrosDB: TRLBand;
-    RLDBText1: TRLDBText;
     RLDBText2: TRLDBText;
     RLDBText3: TRLDBText;
-    RLBand1: TRLBand;
-    RLDBResult2: TRLDBResult;
-    RLLabel10: TRLLabel;
-    RLBand3: TRLBand;
-    RLLabel4: TRLLabel;
-    RLLabel5: TRLLabel;
-    RLLabel7: TRLLabel;
     QryVendasvendaId: TIntegerField;
     QryVendasclienteId: TIntegerField;
     QryVendasnome: TWideStringField;
@@ -49,6 +41,29 @@ type
     RLBand4: TRLBand;
     RLDBResult1: TRLDBResult;
     RLLabel6: TRLLabel;
+    dtsVendasItens: TDataSource;
+    QryVendaItens: TZQuery;
+    QryVendaItensvendaId: TIntegerField;
+    QryVendaItensprodutoId: TIntegerField;
+    QryVendaItensquantidade: TFloatField;
+    QryVendaItensvalorUnitario: TFloatField;
+    QryVendaItenstotalProduto: TFloatField;
+    RLLabel5: TRLLabel;
+    RLLabel7: TRLLabel;
+    RLSubDetail1: TRLSubDetail;
+    RLBand3: TRLBand;
+    RLLabel4: TRLLabel;
+    RLBand1: TRLBand;
+    RLDBText1: TRLDBText;
+    RLDBText4: TRLDBText;
+    QryVendaItensNome: TWideStringField;
+    RLLabel9: TRLLabel;
+    RLDBText6: TRLDBText;
+    RLDBText7: TRLDBText;
+    RLDBText8: TRLDBText;
+    RLLabel10: TRLLabel;
+    RLLabel11: TRLLabel;
+    RLLabel12: TRLLabel;
     procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
@@ -57,7 +72,7 @@ type
   end;
 
 var
-  frmRelProVendaPorData: TfrmRelProVendaPorData;
+  frmRelProVenda: TfrmRelProVenda;
 
 implementation
 
@@ -65,9 +80,10 @@ implementation
 
 uses uDtmPrincipal;
 
-procedure TfrmRelProVendaPorData.FormDestroy(Sender: TObject);
+procedure TfrmRelProVenda.FormDestroy(Sender: TObject);
 begin
   QryVendas.Close;
+  QryVendaItens.Close;
 end;
 
 end.

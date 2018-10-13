@@ -74,7 +74,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDtmPrincipal;
+uses uDtmPrincipal, uRelProVenda;
 
 {$region 'Override'}
 function TfrmProVenda.Apagar: Boolean;
@@ -86,6 +86,7 @@ end;
 
 function TfrmProVenda.Gravar(EstadoDoCadastro: TEstadoDoCadastro): boolean;
 begin
+  Result:=False;
   if edtVendaId.Text<>EmptyStr then
      oVenda.VendaId:=StrToInt(edtVendaId.Text)
   else
@@ -95,10 +96,23 @@ begin
   oVenda.DataVenda        :=edtDataVenda.Date;
   oVenda.TotalVenda       :=edtValorTotal.Value;
 
-  if (EstadoDoCadastro=ecInserir) then
-     Result:=oVenda.Inserir(dtmVendas.cdsItensVenda)
+  if (EstadoDoCadastro=ecInserir) then begin
+     oVenda.VendaId:=oVenda.Inserir(dtmVendas.cdsItensVenda);
+  end
   else if (EstadoDoCadastro=ecAlterar) then
-     Result:=oVenda.Atualizar(dtmVendas.cdsItensVenda);
+     oVenda.Atualizar(dtmVendas.cdsItensVenda);
+
+  frmRelProVenda:=TfrmRelProVenda.Create(self);
+  frmRelProVenda.QryVendas.ParamByName('VendaId').AsInteger:= oVenda.VendaId;
+  frmRelProVenda.QryVendas.Open;
+
+  frmRelProVenda.QryVendaItens.ParamByName('VendaId').AsInteger:= oVenda.VendaId;
+  frmRelProVenda.QryVendaItens.Open;
+
+  frmRelProVenda.Relatorio.PreviewModal;
+  frmRelProVenda.Release;
+
+  Result:=true;
 end;
 procedure TfrmProVenda.lkpProdutoExit(Sender: TObject);
 begin
@@ -196,6 +210,7 @@ end;
 procedure TfrmProVenda.btnGravarClick(Sender: TObject);
 begin
   inherited;
+
   LimparCds;
 end;
 

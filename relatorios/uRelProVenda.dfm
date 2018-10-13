@@ -34,9 +34,9 @@ object frmRelProVenda: TfrmRelProVenda
       object RLLabel1: TRLLabel
         Left = 3
         Top = 14
-        Width = 291
+        Width = 77
         Height = 24
-        Caption = 'Listagem de Venda por Data'
+        Caption = 'VENDA'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -21
@@ -448,6 +448,7 @@ object frmRelProVenda: TfrmRelProVenda
   end
   object QryVendas: TZQuery
     Connection = DtmPrincipal.ConexaoDB
+    Active = True
     SQL.Strings = (
       #9'SELECT vendas.vendaId,'
       #9'       vendas.clienteId,'
@@ -522,6 +523,7 @@ object frmRelProVenda: TfrmRelProVenda
   end
   object QryVendaItens: TZQuery
     Connection = DtmPrincipal.ConexaoDB
+    Active = True
     SQL.Strings = (
       'SELECT vendasItens.vendaId,'
       '       vendasItens.produtoId,'

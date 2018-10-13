@@ -55,7 +55,7 @@ object frmRelProVenda: TfrmRelProVenda
     end
     object Rodape: TRLBand
       Left = 38
-      Top = 212
+      Top = 233
       Width = 718
       Height = 36
       BandType = btFooter
@@ -407,11 +407,11 @@ object frmRelProVenda: TfrmRelProVenda
       Left = 38
       Top = 185
       Width = 718
-      Height = 27
+      Height = 48
       BandType = btSummary
       object RLDBResult1: TRLDBResult
         Left = 610
-        Top = 6
+        Top = 24
         Width = 105
         Height = 16
         Alignment = taRightJustify
@@ -423,7 +423,7 @@ object frmRelProVenda: TfrmRelProVenda
       end
       object RLLabel6: TRLLabel
         Left = 504
-        Top = 6
+        Top = 24
         Width = 101
         Height = 16
         Caption = 'Total da Venda'
@@ -434,6 +434,13 @@ object frmRelProVenda: TfrmRelProVenda
         Font.Style = [fsBold]
         ParentFont = False
         Transparent = False
+      end
+      object RLDraw3: TRLDraw
+        Left = 504
+        Top = 11
+        Width = 211
+        Height = 7
+        DrawKind = dkLine
       end
     end
   end

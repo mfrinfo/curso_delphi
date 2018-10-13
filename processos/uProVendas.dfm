@@ -9,7 +9,6 @@ inherited frmProVenda: TfrmProVenda
   end
   inherited pnlCentro: TPanel
     inherited pgcPrincipal: TPageControl
-      ActivePage = tabManutencao
       inherited tabListagem: TTabSheet
         ExplicitLeft = 4
         ExplicitTop = 24

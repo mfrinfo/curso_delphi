@@ -103,11 +103,14 @@ begin
      oVenda.Atualizar(dtmVendas.cdsItensVenda);
 
   frmRelProVenda:=TfrmRelProVenda.Create(self);
+  frmRelProVenda.QryVendas.Close;
   frmRelProVenda.QryVendas.ParamByName('VendaId').AsInteger:= oVenda.VendaId;
   frmRelProVenda.QryVendas.Open;
 
+  frmRelProVenda.QryVendaItens.Close;
   frmRelProVenda.QryVendaItens.ParamByName('VendaId').AsInteger:= oVenda.VendaId;
   frmRelProVenda.QryVendaItens.Open;
+
 
   frmRelProVenda.Relatorio.PreviewModal;
   frmRelProVenda.Release;

@@ -581,6 +581,14 @@ object frmAtualizaBancoDados: TfrmAtualizaBancoDados
         Caption = 'Conex'#227'o com Banco de Dados'
         TabOrder = 5
       end
+      object chkUsuarios: TCheckBox
+        Left = 328
+        Top = 197
+        Width = 97
+        Height = 17
+        Caption = 'Usu'#225'rios'
+        TabOrder = 6
+      end
     end
   end
 end

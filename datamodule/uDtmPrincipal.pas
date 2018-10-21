@@ -14,6 +14,8 @@ type
     QryScriptProdutos: TZQuery;
     QryScriptItensVendas: TZQuery;
     QryScriptVendas: TZQuery;
+    ConexaoFirebird3: TZConnection;
+    QryScriptUsuarios: TZQuery;
 
 
   private

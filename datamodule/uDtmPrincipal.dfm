@@ -118,4 +118,41 @@ object DtmPrincipal: TDtmPrincipal
     Left = 152
     Top = 72
   end
+  object ConexaoFirebird3: TZConnection
+    ControlsCodePage = cCP_UTF16
+    ClientCodepage = 'WIN1252'
+    Catalog = ''
+    Properties.Strings = (
+      'codepage=WIN1252')
+    Connected = True
+    SQLHourGlass = True
+    HostName = 'localhost'
+    Port = 0
+    Database = 'C:\AplicacaoExemplo\CURSO.FDB'
+    User = 'SYSDBA'
+    Password = 'mudar@123'
+    Protocol = 'firebird-3.0'
+    LibraryLocation = 'C:\Program Files\Firebird\Firebird_3_0\fbclient.dll'
+    Left = 56
+    Top = 176
+  end
+  object QryScriptUsuarios: TZQuery
+    Connection = ConexaoDB
+    SQL.Strings = (
+      'IF OBJECT_ID ('#39'usuarios'#39') IS NULL'
+      'BEGIN'
+      #9'Create table usuarios ('
+      #9'  usuarioId int identity(1,1) not null,'
+      #9'  nome varchar(50) not null,'
+      #9'  senha varchar(40) not null,'
+      ''
+      #9'  PRIMARY KEY (usuarioId)'
+      #9')'
+      'END;'
+      ''
+      '')
+    Params = <>
+    Left = 360
+    Top = 72
+  end
 end

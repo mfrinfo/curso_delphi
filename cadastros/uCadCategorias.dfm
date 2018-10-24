@@ -23,6 +23,7 @@ inherited frmCadCategoria: TfrmCadCategoria
     inherited pgcPrincipal: TPageControl
       Width = 771
       Height = 288
+      ActivePage = tabManutencao
       ExplicitWidth = 771
       ExplicitHeight = 288
       inherited tabListagem: TTabSheet
@@ -32,7 +33,6 @@ inherited frmCadCategoria: TfrmCadCategoria
         ExplicitHeight = 260
         inherited pnlListagemTopo: TPanel
           Width = 763
-          ExplicitTop = 0
           ExplicitWidth = 763
         end
         inherited pnlListagemCentro: TPanel

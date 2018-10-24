@@ -15,6 +15,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
   WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -24,7 +25,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     Height = 57
     Align = alTop
     TabOrder = 0
-    ExplicitTop = -5
     object Label1: TLabel
       Left = 8
       Top = 17
@@ -47,9 +47,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     Width = 1107
     Height = 19
     Panels = <>
-    ExplicitLeft = 536
-    ExplicitTop = 424
-    ExplicitWidth = 0
   end
   object GridPanel1: TGridPanel
     Left = 0
@@ -73,10 +70,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
         Value = 50.000000000000000000
       end>
     TabOrder = 2
-    ExplicitLeft = 704
-    ExplicitTop = 336
-    ExplicitWidth = 185
-    ExplicitHeight = 41
   end
   object MainMenu1: TMainMenu
     Left = 120
@@ -99,6 +92,13 @@ object frmMenuPrincipal: TfrmMenuPrincipal
         OnClick = PRODUTO1Click
       end
       object N2: TMenuItem
+        Caption = '-'
+      end
+      object USURIOS1: TMenuItem
+        Caption = 'USU'#193'RIOS'
+        OnClick = USURIOS1Click
+      end
+      object N4: TMenuItem
         Caption = '-'
       end
       object FECHAR1: TMenuItem

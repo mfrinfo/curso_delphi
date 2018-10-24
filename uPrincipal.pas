@@ -33,6 +33,8 @@ type
     GridPanel1: TGridPanel;
     PRODUTOSPORCATEGORIAS1: TMenuItem;
     FICHADECLIENTE1: TMenuItem;
+    USURIOS1: TMenuItem;
+    N4: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FECHAR1Click(Sender: TObject);
@@ -47,6 +49,8 @@ type
     procedure CLIENTE2Click(Sender: TObject);
     procedure FICHADECLIENTE1Click(Sender: TObject);
     procedure VENDAPORDIA1Click(Sender: TObject);
+    procedure USURIOS1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter:TMREnter;
@@ -64,7 +68,8 @@ implementation
 
 uses uCadCategorias, uCadCliente, uCadProdutos, uProVendas, uRelCadCategorias,
   uRelCadProdutos, uRelCadProdutosComGrupoCategoria, uRelCadClientes,
-  uRelCadClientesFicha, uRelProVendaPorData, uSelecionarData;
+  uRelCadClientesFicha, uRelProVendaPorData, uSelecionarData, uCadUsuario,
+  uLogin;
 
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
@@ -169,6 +174,13 @@ begin
 
 end;
 
+procedure TfrmMenuPrincipal.FormShow(Sender: TObject);
+begin
+  frmLogin:=TfrmLogin.Create(Self);
+  frmLogin.ShowModal;
+  frmLogin.Release;
+end;
+
 procedure TfrmMenuPrincipal.Label1Click(Sender: TObject);
 begin
   ShellExecute(Handle,'open','https://www.udemy.com/desenvolver-sistema-com-delphi-e-sql-server-na-pratica/',nil,nil,SW_SHOW);
@@ -193,6 +205,13 @@ begin
   frmRelCadProdutosComGrupoCategoria:=TfrmRelCadProdutosComGrupoCategoria.Create(Self);
   frmRelCadProdutosComGrupoCategoria.Relatorio.PreviewModal;
   frmRelCadProdutosComGrupoCategoria.Release;
+end;
+
+procedure TfrmMenuPrincipal.USURIOS1Click(Sender: TObject);
+begin
+  frmCadUsuario:=TfrmCadUsuario.Create(self);
+  frmCadUsuario.ShowModal;
+  frmCadUsuario.Release;
 end;
 
 procedure TfrmMenuPrincipal.VENDA1Click(Sender: TObject);

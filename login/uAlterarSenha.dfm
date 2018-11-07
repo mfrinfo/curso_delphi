@@ -1,11 +1,10 @@
-object frmLogin: TfrmLogin
+object frmAlterarSenha: TfrmAlterarSenha
   Left = 0
   Top = 0
-  BorderIcons = []
   BorderStyle = bsDialog
-  Caption = 'LOGIN'
-  ClientHeight = 201
-  ClientWidth = 397
+  Caption = 'ALTERAR SENHA'
+  ClientHeight = 233
+  ClientWidth = 439
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,32 +13,15 @@ object frmLogin: TfrmLogin
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
-  OnCloseQuery = FormCloseQuery
   OnShow = FormShow
-  DesignSize = (
-    397
-    201)
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 32
-    Top = 43
-    Width = 83
-    Height = 19
-    Caption = 'USU'#193'RIO:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object Label2: TLabel
-    Left = 53
-    Top = 96
-    Width = 62
+    Left = 59
+    Top = 49
+    Width = 123
     Height = 19
-    Caption = 'SENHA:'
+    Caption = 'SENHA ATUAL:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -47,9 +29,54 @@ object frmLogin: TfrmLogin
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object edtUsuario: TEdit
-    Left = 128
-    Top = 42
+  object Label1: TLabel
+    Left = 68
+    Top = 104
+    Width = 114
+    Height = 19
+    Caption = 'NOVA SENHA:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 137
+    Width = 174
+    Height = 19
+    Caption = 'DIGITE NOVAMENTE:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lblUsuarioLogado: TLabel
+    Left = 0
+    Top = 0
+    Width = 439
+    Height = 19
+    Align = alTop
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'XXXXXXXXXXXXX'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    ExplicitLeft = 155
+    ExplicitTop = 8
+    ExplicitWidth = 123
+  end
+  object edtSenhaAtual: TEdit
+    Left = 201
+    Top = 46
     Width = 225
     Height = 27
     Font.Charset = DEFAULT_CHARSET
@@ -58,12 +85,13 @@ object frmLogin: TfrmLogin
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+    PasswordChar = '*'
     TabOrder = 0
-    Text = 'ADMIN'
+    Text = 'mudar@123'
   end
-  object edtSenha: TEdit
-    Left = 128
-    Top = 93
+  object edtSenhaNova: TEdit
+    Left = 201
+    Top = 101
     Width = 225
     Height = 27
     Font.Charset = DEFAULT_CHARSET
@@ -76,12 +104,27 @@ object frmLogin: TfrmLogin
     TabOrder = 1
     Text = 'mudar@123'
   end
-  object btnAcessar: TBitBtn
-    Left = 254
-    Top = 146
+  object edtRepetirNovaSenha: TEdit
+    Left = 201
+    Top = 134
+    Width = 225
+    Height = 27
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    PasswordChar = '*'
+    TabOrder = 2
+    Text = 'mudar@123'
+  end
+  object btnAlterar: TBitBtn
+    Left = 327
+    Top = 194
     Width = 99
     Height = 25
-    Caption = 'ACESSAR'
+    Caption = 'ALTERAR'
     Glyph.Data = {
       36030000424D3603000000000000360000002800000010000000100000000100
       18000000000000030000C20E0000C20E00000000000000000000FF00FFFF00FF
@@ -109,15 +152,14 @@ object frmLogin: TfrmLogin
       C5C8C68EDDA862DF863FCC6637C76134C55D33C35B32C35835C35737C24F65C1
       75C3C7C4FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFBACEC089DBA268DB8959
       D97851D46F55CE7371C986AFC6B3FF00FFFF00FFFF00FFFF00FF}
-    TabOrder = 2
-    OnClick = btnAcessarClick
+    TabOrder = 3
+    OnClick = btnAlterarClick
   end
   object btnFechar: TBitBtn
-    Left = 128
-    Top = 146
+    Left = 220
+    Top = 194
     Width = 99
     Height = 25
-    Anchors = [akTop, akRight]
     Caption = 'FECHAR'
     Glyph.Data = {
       36030000424D3603000000000000360000002800000010000000100000000100
@@ -146,7 +188,7 @@ object frmLogin: TfrmLogin
       2B8CB23192B53697B93C9CBC3FA0BF45A6C24AABC64FB0C954B5CD59BAD15FBF
       D363C4D7244E6EFF00FFFF00FF244E6E244E6E244E6E244E6E244E6E244E6E24
       4E6E244E6E244E6E244E6E244E6E244E6E244E6E244E6EFF00FF}
-    TabOrder = 3
+    TabOrder = 4
     OnClick = btnFecharClick
   end
 end

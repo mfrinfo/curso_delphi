@@ -41,12 +41,16 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       OnClick = Label1Click
     end
   end
-  object StatusBar1: TStatusBar
+  object StbPrincipal: TStatusBar
     Left = 0
     Top = 565
     Width = 1107
     Height = 19
-    Panels = <>
+    Panels = <
+      item
+        Width = 100
+      end>
+    ExplicitTop = 571
   end
   object GridPanel1: TGridPanel
     Left = 0
@@ -97,6 +101,10 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       object USURIOS1: TMenuItem
         Caption = 'USU'#193'RIOS'
         OnClick = USURIOS1Click
+      end
+      object ALTERARSENHA1: TMenuItem
+        Caption = 'ALTERAR SENHA'
+        OnClick = ALTERARSENHA1Click
       end
       object N4: TMenuItem
         Caption = '-'

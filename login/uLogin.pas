@@ -34,7 +34,7 @@ implementation
 
 {$R *.dfm}
 
-uses cCadUsuario, uDtmPrincipal;
+uses cCadUsuario, uDtmPrincipal, uPrincipal;
 
 procedure TfrmLogin.btnFecharClick(Sender: TObject);
 begin
@@ -47,6 +47,10 @@ begin
   Try
     oUsuario:=TUsuario.Create(dtmPrincipal.ConexaoDB);
     if oUsuario.Logar(edtUsuario.Text,edtSenha.Text) then begin
+       oUsuarioLogado.codigo := oUsuario.codigo;
+       oUsuarioLogado.nome   := oUsuario.nome;
+       oUsuarioLogado.senha  := oUsuario.senha;
+
        FecharFormulario //Fecha o Formulario do Login
     end
     else begin

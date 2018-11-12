@@ -77,6 +77,7 @@ begin
 
   try
     Result:=true;
+    ConexaoDB.StartTransaction;
     Qry:=TZQuery.Create(nil);
     Qry.Connection:=ConexaoDB;
     //Apaga os Itens Primeiro
@@ -92,8 +93,9 @@ begin
                   ' WHERE vendaId=:vendaId ');
       Qry.ParamByName('vendaId').AsInteger :=F_VendaId;
       Qry.ExecSQL;
-
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -188,9 +190,12 @@ begin
     Qry.ParamByName('TotalProduto').AsFloat :=cds.FieldByName('valorTotalProduto').AsFloat;
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
       BaixarEstoque(cds.FieldByName('produtoId').AsInteger, cds.FieldByName('quantidade').AsFloat);
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -267,8 +272,11 @@ begin
     Qry.ParamByName('vendaId').AsInteger    :=Self.F_vendaId;
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -283,7 +291,6 @@ var Qry:TZQuery;
     IdVendaGerado:Integer;
 begin
   try
-
     ConexaoDB.StartTransaction;
     Qry:=TZQuery.Create(nil);
     Qry.Connection:=ConexaoDB;
@@ -343,9 +350,12 @@ begin
     Qry.ParamByName('Quantidade').AsFloat   := cds.FieldByName('quantidade').AsFloat;
     Qry.ParamByName('TotalProduto').AsFloat := cds.FieldByName('valorTotalProduto').AsFloat;
     try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
       BaixarEstoque(cds.FieldByName('produtoId').AsInteger, cds.FieldByName('quantidade').AsFloat);
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 

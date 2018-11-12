@@ -7,7 +7,7 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDtmPrincipal, Enter,
   ufrmAtualizaDB, ShellApi, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
   VclTee.TeeGDIPlus, Data.DB, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,
-  VCLTee.Chart, VCLTee.DBChart, cUsuarioLogado;
+  VCLTee.Chart, VCLTee.DBChart, cUsuarioLogado, ZDbcIntfs;
 
 type
   TfrmMenuPrincipal = class(TForm)
@@ -72,7 +72,7 @@ implementation
 uses uCadCategorias, uCadCliente, uCadProdutos, uProVendas, uRelCadCategorias,
   uRelCadProdutos, uRelCadProdutosComGrupoCategoria, uRelCadClientes,
   uRelCadClientesFicha, uRelProVendaPorData, uSelecionarData, uCadUsuario,
-  uLogin, uAlterarSenha;
+  uLogin, uAlterarSenha, cAtualizacaoBancoDeDados;
 
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
@@ -169,8 +169,11 @@ begin
     User := 'sa';  //Usuario do Banco de Dados
     Password:='mudar@123';  //Senha do Usuário do banco
     Database:='vendas';  //Nome do Banco de Dados
+    AutoCommit:= True;
+    TransactIsolationLevel:=tiReadCommitted;
     Connected:=True;  //Faz a Conexão do Banco
   end;
+
   AtualizacaoBancoDados(frmAtualizaBancoDados);
 
   frmAtualizaBancoDados.Free;
@@ -260,34 +263,15 @@ begin
 end;
 
 procedure TfrmMenuPrincipal.AtualizacaoBancoDados(aForm:TfrmAtualizaBancoDados);
+var oAtualizarMSSQL:TAtualizaBancoDadosMSSQL;
 begin
-  aForm.chkConexao.Checked := true;
-  aForm.Refresh;
-  Sleep(50);
-  DtmPrincipal.QryScriptCategorias.ExecSQL;
-  aForm.chkCategoria.Checked := true;
-  aForm.Refresh;
-  Sleep(50);
-  DtmPrincipal.QryScriptClientes.ExecSQL;
-  aForm.chkCliente.Checked := true;
-  aForm.Refresh;
-  Sleep(50);
-  DtmPrincipal.QryScriptProdutos.ExecSQL;
-  aForm.chkProduto.Checked := true;
-  aForm.Refresh;
-  Sleep(50);
-  DtmPrincipal.QryScriptVendas.ExecSQL;
-  aForm.chkVendas.Checked := true;
-  aForm.Refresh;
-  Sleep(50);
-  DtmPrincipal.QryScriptItensVendas.ExecSQL;
-  aForm.chkItensVendas.Checked := true;
-  aForm.Refresh;
-  Sleep(50);
-  DtmPrincipal.QryScriptUsuarios.ExecSQL;
-  aForm.chkUsuarios.Checked := true;
-  aForm.Refresh;
-  Sleep(50);
+  try
+    oAtualizarMSSQL:=TAtualizaBancoDadosMSSQL.Create(DtmPrincipal.ConexaoDB);
+    oAtualizarMSSQL.AtualizarBancoDeDadosMSSQL;
+  finally
+    if Assigned(oAtualizarMSSQL) then
+       FreeAndNil(oAtualizarMSSQL);
+  end;
 end;
 
 end.

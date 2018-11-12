@@ -9,13 +9,7 @@ uses
 type
   TDtmPrincipal = class(TDataModule)
     ConexaoDB: TZConnection;
-    QryScriptCategorias: TZQuery;
-    QryScriptClientes: TZQuery;
-    QryScriptProdutos: TZQuery;
-    QryScriptItensVendas: TZQuery;
-    QryScriptVendas: TZQuery;
     ConexaoFirebird3: TZConnection;
-    QryScriptUsuarios: TZQuery;
 
 
   private

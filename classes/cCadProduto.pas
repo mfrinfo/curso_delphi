@@ -78,8 +78,11 @@ begin
                 ' WHERE produtoId=:produtoId ');
     Qry.ParamByName('produtoId').AsInteger :=F_produtoId;
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -112,8 +115,11 @@ begin
     Qry.ParamByName('categoriaId').AsInteger     :=Self.F_categoriaId;
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -149,8 +155,11 @@ begin
     Qry.ParamByName('categoriaId').AsInteger     :=Self.F_categoriaId;
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 

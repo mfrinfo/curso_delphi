@@ -1,5 +1,8 @@
 inherited frmProVenda: TfrmProVenda
   Caption = 'Vendas de Produto'
+  ExplicitTop = -147
+  ExplicitWidth = 870
+  ExplicitHeight = 507
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlRodaPe: TPanel

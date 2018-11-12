@@ -86,8 +86,11 @@ begin
                 ' WHERE clienteId=:clienteId ');
     Qry.ParamByName('clienteId').AsInteger :=F_clienteId;
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -129,8 +132,11 @@ begin
 
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -178,8 +184,11 @@ begin
     Qry.ParamByName('dataNascimento').AsDateTime :=Self.F_dataNascimento;
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 

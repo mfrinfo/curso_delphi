@@ -74,8 +74,11 @@ begin
                 ' WHERE categoriaId=:categoriaId ');
     Qry.ParamByName('categoriaId').AsInteger :=id;
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -100,8 +103,11 @@ begin
     Qry.ParamByName('descricao').AsString    :=Self.F_descricao;
 
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -122,8 +128,11 @@ begin
     Qry.SQL.Add('INSERT INTO categorias (descricao) values (:descricao)');
     Qry.ParamByName('descricao').AsString :=Self.F_descricao;
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 

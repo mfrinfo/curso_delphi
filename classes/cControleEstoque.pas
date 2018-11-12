@@ -61,8 +61,11 @@ begin
     Qry.ParamByName('produtoId').AsInteger :=ProdutoId;
     Qry.ParamByName('qtdeBaixa').AsFloat   :=Quantidade;
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 
@@ -88,8 +91,11 @@ begin
     Qry.ParamByName('produtoId').AsInteger :=ProdutoId;
     Qry.ParamByName('qtdeRetorno').AsFloat :=Quantidade;
     Try
+      ConexaoDB.StartTransaction;
       Qry.ExecSQL;
+      ConexaoDB.Commit;
     Except
+      ConexaoDB.Rollback;
       Result:=false;
     End;
 

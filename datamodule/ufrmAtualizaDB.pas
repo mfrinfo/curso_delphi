@@ -11,15 +11,7 @@ type
   TfrmAtualizaBancoDados = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
-    Image1: TImage;
     Label1: TLabel;
-    chkCategoria: TCheckBox;
-    chkCliente: TCheckBox;
-    chkProduto: TCheckBox;
-    chkVendas: TCheckBox;
-    chkItensVendas: TCheckBox;
-    chkConexao: TCheckBox;
-    chkUsuarios: TCheckBox;
   private
     { Private declarations }
   public

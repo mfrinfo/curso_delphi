@@ -50,7 +50,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       item
         Width = 100
       end>
-    ExplicitTop = 571
   end
   object GridPanel1: TGridPanel
     Left = 0

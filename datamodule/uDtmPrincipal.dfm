@@ -7,10 +7,7 @@ object DtmPrincipal: TDtmPrincipal
     Catalog = ''
     UseMetadata = False
     TransactIsolationLevel = tiReadCommitted
-<<<<<<< HEAD
     Connected = True
-=======
->>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
     SQLHourGlass = True
     HostName = '.\BUSINESSSQL2016'
     Port = 0
@@ -18,11 +15,7 @@ object DtmPrincipal: TDtmPrincipal
     User = 'sa'
     Password = 'FOLHAmatic&201IOB'
     Protocol = 'mssql'
-<<<<<<< HEAD
     LibraryLocation = 'D:\MARCOS\delphi\ntwdblib.dll'
-=======
-    LibraryLocation = 'C:\cursoDelphi\ntwdblib.dll'
->>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
     Left = 40
     Top = 24
   end

@@ -7,11 +7,7 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDtmPrincipal, Enter,
   ufrmAtualizaDB, ShellApi, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
   VclTee.TeeGDIPlus, Data.DB, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,
-<<<<<<< HEAD
   VCLTee.Chart, VCLTee.DBChart, cUsuarioLogado, ZDbcIntfs, cAcaoAcesso;
-=======
-  VCLTee.Chart, VCLTee.DBChart, cUsuarioLogado, ZDbcIntfs;
->>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
 
 type
   TfrmMenuPrincipal = class(TForm)
@@ -79,12 +75,7 @@ implementation
 uses uCadCategorias, uCadCliente, uCadProdutos, uProVendas, uRelCadCategorias,
   uRelCadProdutos, uRelCadProdutosComGrupoCategoria, uRelCadClientes,
   uRelCadClientesFicha, uRelProVendaPorData, uSelecionarData, uCadUsuario,
-<<<<<<< HEAD
   uLogin, uAlterarSenha, cAtualizacaoBancoDeDados, cArquivoIni, uAcaoAcesso;
-=======
-  uLogin, uAlterarSenha, cAtualizacaoBancoDeDados;
->>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
-
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
 begin
@@ -166,7 +157,6 @@ begin
   frmAtualizaBancoDados.Show;
   frmAtualizaBancoDados.Refresh;
 
-<<<<<<< HEAD
   if not FileExists(TArquivoIni.ArquivoIni) then
   begin
     TArquivoIni.AtualizarIni('SERVER', 'TipoDataBase', 'MSSQL');
@@ -216,34 +206,12 @@ begin
     TAcaoAcesso.CriarAcoes(TfrmRelCadCategorias,DtmPrincipal.ConexaoDB);
 
     frmAtualizaBancoDados.Free;
+	
     TeclaEnter:=TMREnter.Create(Self);
     TeclaEnter.FocusEnabled:=True;
     TeclaEnter.FocusColor:=clInfoBk;
   end;
-=======
-  DtmPrincipal:=TDtmPrincipal.Create(self);     //Instancia o DataModule
-  with DtmPrincipal.ConexaoDB do begin
-    SQLHourGlass:=False;    //Habilita o Cursor em cada transação no banco de dados
-    LibraryLocation:=ExtractFilePath(Application.ExeName)+'ntwdblib.dll';  //Seta a DLL para conexao do SQL
-    Protocol:='mssql';  //Protocolo do banco de dados
-    HostName:='.\SERVERCURSO'; //Instancia do SQLServer
-    Port:=1433;          //Porta do SQL Server
-    User := 'sa';  //Usuario do Banco de Dados
-    Password:='mudar@123';  //Senha do Usuário do banco
-    Database:='vendas';  //Nome do Banco de Dados
-    AutoCommit:= True;
-    TransactIsolationLevel:=tiReadCommitted;
-    Connected:=True;  //Faz a Conexão do Banco
-  end;
 
-  AtualizacaoBancoDados(frmAtualizaBancoDados);
-
-  frmAtualizaBancoDados.Free;
-  TeclaEnter:=TMREnter.Create(Self);
-  TeclaEnter.FocusEnabled:=True;
-  TeclaEnter.FocusColor:=clInfoBk;
-
->>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
 end;
 
 procedure TfrmMenuPrincipal.FormShow(Sender: TObject);
@@ -324,7 +292,6 @@ end;
 
 procedure TfrmMenuPrincipal.AtualizacaoBancoDados(aForm:TfrmAtualizaBancoDados);
 var oAtualizarMSSQL:TAtualizaBancoDadosMSSQL;
-<<<<<<< HEAD
 begin
   try
     oAtualizarMSSQL:=TAtualizaBancoDadosMSSQL.Create(DtmPrincipal.ConexaoDB);
@@ -344,16 +311,6 @@ begin
   finally
     if Assigned(form) then
        form.Release;
-=======
-begin
-  try
-    oAtualizarMSSQL:=TAtualizaBancoDadosMSSQL.Create(DtmPrincipal.ConexaoDB);
-    oAtualizarMSSQL.AtualizarBancoDeDadosMSSQL;
-  finally
-    if Assigned(oAtualizarMSSQL) then
-       FreeAndNil(oAtualizarMSSQL);
->>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
   end;
 end;
-
 end.

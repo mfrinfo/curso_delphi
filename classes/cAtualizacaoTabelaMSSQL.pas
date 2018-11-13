@@ -33,6 +33,10 @@ type
     procedure Vendas;
     procedure VendasItens;
     procedure Usuario;
+<<<<<<< HEAD
+    procedure AcaoAcesso;
+=======
+>>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
 end;
 
 implementation
@@ -48,6 +52,10 @@ begin
   Vendas;
   VendasItens;
   Usuario;
+<<<<<<< HEAD
+  AcaoAcesso;
+=======
+>>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
 end;
 
 destructor TAtualizacaoTableMSSQL.Destroy;
@@ -200,4 +208,23 @@ begin
     );
   end;
 end;
+<<<<<<< HEAD
+
+
+procedure TAtualizacaoTableMSSQL.AcaoAcesso;
+begin
+  if not TabelaExiste('acaoAcesso') then
+  begin
+    ExecutaDiretoBancoDeDados(
+      'CREATE TABLE acaoAcesso ( '+
+      '	 acaoAcessoId int identity(1,1) not null, '+
+      '	 descricao varchar(100) not null, '+
+      '	 chave varchar(60) not null unique, '+
+      '	 PRIMARY KEY (acaoAcessoId) '+
+      '	) '
+    );
+  end;
+end;
+=======
+>>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
 end.

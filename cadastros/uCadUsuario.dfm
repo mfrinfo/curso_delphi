@@ -3,7 +3,7 @@ inherited frmCadUsuario: TfrmCadUsuario
   ClientHeight = 375
   ClientWidth = 764
   ExplicitWidth = 770
-  ExplicitHeight = 403
+  ExplicitHeight = 404
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlRodaPe: TPanel
@@ -31,8 +31,6 @@ inherited frmCadUsuario: TfrmCadUsuario
       ExplicitWidth = 762
       ExplicitHeight = 321
       inherited tabListagem: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 754
         ExplicitHeight = 293
         inherited pnlListagemTopo: TPanel
@@ -64,8 +62,6 @@ inherited frmCadUsuario: TfrmCadUsuario
         end
       end
       inherited tabManutencao: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 754
         ExplicitHeight = 293
         object edtNome: TLabeledEdit

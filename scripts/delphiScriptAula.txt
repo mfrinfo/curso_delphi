@@ -1,0 +1,76 @@
+ -- Criar INI para Conexao com Banco de Dados
+ cArquivoIni.pas
+ 
+ if not FileExists(TArquivoIni.ArquivoIni) then
+  begin
+    TArquivoIni.AtualizarIni('SERVER', 'TipoDataBase', 'MSSQL');
+    TArquivoIni.AtualizarIni('SERVER', 'HostName', '.\');
+    TArquivoIni.AtualizarIni('SERVER', 'Port', '1433');
+    TArquivoIni.AtualizarIni('SERVER', 'User', 'sa');
+    TArquivoIni.AtualizarIni('SERVER', 'Password', 'mudar@123');
+    TArquivoIni.AtualizarIni('SERVER', 'Database', 'vendas');
+    MessageDlg('Arquivo '+ TArquivoIni.ArquivoIni +#13+
+               'Criado, Configure o arquivo antes de inicializar aplicação',MtInformation,[mbok],0);
+
+    Application.Terminate;
+  end
+  else
+  begin
+    DtmPrincipal:=TDtmPrincipal.Create(self);     //Instancia o DataModule
+    with DtmPrincipal.ConexaoDB do begin
+      SQLHourGlass:=False;    //Habilita o Cursor em cada transação no banco de dados
+      LibraryLocation:=ExtractFilePath(Application.ExeName)+'ntwdblib.dll';  //Seta a DLL para conexao do SQL
+      if TArquivoIni.LerIni('SERVER','TipoDataBase')='MSSQL' then
+         Protocol:='mssql';  //Protocolo do banco de dados
+
+      HostName:= TArquivoIni.LerIni('SERVER','HostName'); //Instancia do SQLServer
+      Port    := StrToInt(TArquivoIni.LerIni('SERVER','Port'));  //Porta do SQL Server
+      User    := TArquivoIni.LerIni('SERVER','User');  //Usuario do Banco de Dados
+      Password:= TArquivoIni.LerIni('SERVER','Password');  //Senha do Usuário do banco
+      Database:= TArquivoIni.LerIni('SERVER','DataBase');;  //Nome do Banco de Dados
+      AutoCommit:= True;
+      TransactIsolationLevel:=tiReadCommitted;
+      Connected:=True;  //Faz a Conexão do Banco
+    end;
+
+    AtualizacaoBancoDados(frmAtualizaBancoDados);
+
+    frmAtualizaBancoDados.Free;
+    TeclaEnter:=TMREnter.Create(Self);
+    TeclaEnter.FocusEnabled:=True;
+    TeclaEnter.FocusColor:=clInfoBk;
+  end;
+  
+  
+--Cadastro de Ação de Acesso
+procedure TAtualizacaoTableMSSQL.AcaoAcesso;
+begin
+  if not TabelaExiste('acaoAcesso') then
+  begin
+    ExecutaDiretoBancoDeDados(
+      'CREATE TABLE acaoAcesso ( '+
+      '	 acaoAcessoId int identity(1,1) not null, '+
+      '	 descricao varchar(100) not null, '+
+      '	 chave varchar(60) not null, '+
+      '	 PRIMARY KEY (acaoAcessoId) '+
+      '	) '
+    );
+  end;
+end;
+
+cAcaoAcesso.pas
+uAcaoAcesso
+
+MENU
+  AÇÕES DE ACESSO
+  
+procedure TfrmMenuPrincipal.AESDEACESSO1Click(Sender: TObject);
+begin
+  frmCadAcaoAcesso:=TfrmCadAcaoAcesso.Create(Self);
+  frmCadAcaoAcesso.ShowModal;
+  frmCadAcaoAcesso.Release;
+end;
+
+UTelaHerança
+Tag 99 todos os botões que vai receber Ações de Acesso
+  

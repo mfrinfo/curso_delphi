@@ -29,6 +29,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       864
       52)
     object btnNovo: TBitBtn
+      Tag = 99
       Left = 5
       Top = 16
       Width = 80
@@ -65,6 +66,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnNovoClick
     end
     object btnAlterar: TBitBtn
+      Tag = 99
       Left = 85
       Top = 16
       Width = 80
@@ -101,6 +103,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnAlterarClick
     end
     object btnGravar: TBitBtn
+      Tag = 99
       Left = 245
       Top = 16
       Width = 80
@@ -137,6 +140,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnGravarClick
     end
     object btnApagar: TBitBtn
+      Tag = 99
       Left = 325
       Top = 16
       Width = 80
@@ -219,6 +223,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       TabOrder = 5
     end
     object btnCancelar: TBitBtn
+      Tag = 99
       Left = 165
       Top = 16
       Width = 80
@@ -297,6 +302,7 @@ object frmTelaHeranca: TfrmTelaHeranca
             OnChange = mskPesquisaChange
           end
           object btnPesquisa: TBitBtn
+            Tag = 99
             Left = 369
             Top = 20
             Width = 80
@@ -373,7 +379,7 @@ object frmTelaHeranca: TfrmTelaHeranca
   end
   object DtsListagem: TDataSource
     DataSet = QryListagem
-    Left = 637
+    Left = 661
     Top = 25
   end
 end

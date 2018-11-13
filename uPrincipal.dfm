@@ -101,6 +101,10 @@ object frmMenuPrincipal: TfrmMenuPrincipal
         Caption = 'USU'#193'RIOS'
         OnClick = USURIOS1Click
       end
+      object AESDEACESSO1: TMenuItem
+        Caption = 'A'#199#213'ES DE ACESSO'
+        OnClick = AESDEACESSO1Click
+      end
       object ALTERARSENHA1: TMenuItem
         Caption = 'ALTERAR SENHA'
         OnClick = ALTERARSENHA1Click

@@ -34,7 +34,14 @@ uses
   cUsuarioLogado in 'classes\cUsuarioLogado.pas',
   cAtualizacaoBancoDeDados in 'classes\cAtualizacaoBancoDeDados.pas',
   cAtualizacaoTabelaMSSQL in 'classes\cAtualizacaoTabelaMSSQL.pas',
+<<<<<<< HEAD
+  cAtualizacaoCampoMSSQL in 'classes\cAtualizacaoCampoMSSQL.pas',
+  cArquivoIni in 'classes\cArquivoIni.pas',
+  cAcaoAcesso in 'classes\cAcaoAcesso.pas',
+  uAcaoAcesso in 'login\uAcaoAcesso.pas' {frmCadAcaoAcesso};
+=======
   cAtualizacaoCampoMSSQL in 'classes\cAtualizacaoCampoMSSQL.pas';
+>>>>>>> 640d2c7668293fa60a7bf497acee08a95845a900
 
 {$R *.res}
 

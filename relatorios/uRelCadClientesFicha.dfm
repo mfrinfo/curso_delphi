@@ -1,7 +1,7 @@
 object frmRelCadClientesFicha: TfrmRelCadClientesFicha
   Left = 0
   Top = 0
-  Caption = 'frmRelCadClientesFicha'
+  Caption = 'Relat'#243'rio Ficha de Cliente'
   ClientHeight = 839
   ClientWidth = 825
   Color = clBtnFace

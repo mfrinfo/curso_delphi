@@ -1,7 +1,7 @@
 object frmRelCadProdutosComGrupoCategoria: TfrmRelCadProdutosComGrupoCategoria
   Left = 0
   Top = 0
-  Caption = 'frmRelCadProdutosComGrupoCategoria'
+  Caption = 'Relat'#243'rio de Produto por Categoria'
   ClientHeight = 839
   ClientWidth = 825
   Color = clBtnFace

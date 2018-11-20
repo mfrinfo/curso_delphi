@@ -9,8 +9,11 @@ inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
   inherited pnlRodaPe: TPanel
     Top = 344
     Width = 765
+    ExplicitTop = 344
+    ExplicitWidth = 765
     inherited btnFechar: TBitBtn
       Left = 686
+      ExplicitLeft = 686
     end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()
@@ -19,16 +22,23 @@ inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
   inherited pnlCentro: TPanel
     Width = 765
     Height = 344
+    ExplicitWidth = 765
+    ExplicitHeight = 344
     inherited pgcPrincipal: TPageControl
       Width = 763
       Height = 342
+      ExplicitWidth = 763
+      ExplicitHeight = 342
       inherited tabListagem: TTabSheet
         inherited pnlListagemTopo: TPanel
           Width = 755
+          ExplicitWidth = 755
         end
         inherited pnlListagemCentro: TPanel
           Width = 755
           Height = 254
+          ExplicitWidth = 755
+          ExplicitHeight = 254
           inherited grdListagem: TDBGrid
             Width = 753
             Height = 252

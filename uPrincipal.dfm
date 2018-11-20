@@ -64,7 +64,27 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       item
         Value = 50.000000000000000000
       end>
-    ControlCollection = <>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = DBChart1
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = DBChart2
+        Row = 0
+      end
+      item
+        Column = 0
+        Control = DBChart3
+        Row = 1
+      end
+      item
+        Column = 1
+        Control = DBChart4
+        Row = 1
+      end>
     RowCollection = <
       item
         Value = 50.000000000000000000
@@ -73,6 +93,222 @@ object frmMenuPrincipal: TfrmMenuPrincipal
         Value = 50.000000000000000000
       end>
     TabOrder = 2
+    object DBChart1: TDBChart
+      Left = 1
+      Top = 1
+      Width = 552
+      Height = 253
+      Title.Text.Strings = (
+        'Produto em Estoque')
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 0
+      ExplicitTop = 6
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series1: TBarSeries
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        DataSource = QryProdutoEstoque
+        Title = 'Produto em Estoque'
+        XLabelsSource = 'Label'
+        MultiBar = mbStacked100
+        XValues.Name = 'X'
+        XValues.Order = loAscending
+        YValues.Name = 'Bar'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+      end
+    end
+    object DBChart2: TDBChart
+      Left = 553
+      Top = 1
+      Width = 553
+      Height = 253
+      Title.Text.Strings = (
+        'Valor de Venda por Cliente')
+      Legend.TextStyle = ltsXAndText
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      Align = alClient
+      TabOrder = 1
+      ExplicitLeft = 559
+      ExplicitTop = 6
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series2: TPieSeries
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        Marks.Style = smsPercent
+        Marks.Callout.Length = 20
+        DataSource = QryValorVendaPorCliente
+        Title = 'ValorDeVendaPorCliente'
+        ValueFormat = '#,##0.00'
+        XLabelsSource = 'Label'
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
+      end
+    end
+    object DBChart3: TDBChart
+      Left = 1
+      Top = 254
+      Width = 552
+      Height = 253
+      Title.Text.Strings = (
+        'Vendas da '#218'ltima Semana')
+      Align = alClient
+      TabOrder = 2
+      ExplicitLeft = 0
+      ExplicitTop = 6
+      ExplicitWidth = 400
+      ExplicitHeight = 250
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series3: TFastLineSeries
+        DataSource = QryVendasUltimasSemana
+        Title = 'VendasUltimaSemana'
+        XLabelsSource = 'Label'
+        LinePen.Color = 10708548
+        XValues.Name = 'X'
+        XValues.Order = loAscending
+        YValues.Name = 'Y'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+      end
+    end
+    object DBChart4: TDBChart
+      Left = 553
+      Top = 254
+      Width = 553
+      Height = 253
+      Title.Text.Strings = (
+        'Valor de Venda por Cliente')
+      Legend.TextStyle = ltsXAndText
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      Align = alClient
+      TabOrder = 3
+      ExplicitLeft = 559
+      ExplicitTop = 6
+      ExplicitWidth = 400
+      ExplicitHeight = 250
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object PieSeries1: TPieSeries
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        Marks.Style = smsPercent
+        Marks.Callout.Length = 20
+        DataSource = Qry10ProdutosMaisVendidos
+        Title = '10ProdutosMaisVendidos'
+        ValueFormat = '#,##0.00'
+        XLabelsSource = 'Label'
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
+      end
+    end
   end
   object MainMenu1: TMainMenu
     Left = 120
@@ -104,6 +340,13 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       object AESDEACESSO1: TMenuItem
         Caption = 'A'#199#213'ES DE ACESSO'
         OnClick = AESDEACESSO1Click
+      end
+      object PERMISSODEAESPARAUSURIOS1: TMenuItem
+        Caption = 'PERMISS'#195'O DE A'#199#213'ES PARA USU'#193'RIO'
+        OnClick = PERMISSODEAESPARAUSURIOS1Click
+      end
+      object N5: TMenuItem
+        Caption = '-'
       end
       object ALTERARSENHA1: TMenuItem
         Caption = 'ALTERAR SENHA'
@@ -154,5 +397,63 @@ object frmMenuPrincipal: TfrmMenuPrincipal
         OnClick = VENDAPORDIA1Click
       end
     end
+  end
+  object QryProdutoEstoque: TZQuery
+    Connection = DtmPrincipal.ConexaoDB
+    SQL.Strings = (
+      
+        'SELECT CONVERT(VARCHAR, produtoId) +'#39' - '#39'+nome AS Label, Quantid' +
+        'ade AS Value FROM produtos')
+    Params = <>
+    Left = 417
+    Top = 162
+  end
+  object QryValorVendaPorCliente: TZQuery
+    Connection = DtmPrincipal.ConexaoDB
+    SQL.Strings = (
+      ''
+      
+        '   SELECT CONVERT(VARCHAR, vendas.clienteID) +'#39' - '#39'+ clientes.no' +
+        'me AS Label, SUM(vendas.totalVenda) AS Value'
+      '     FROM Vendas'
+      
+        #9'     INNER JOIN clientes ON clientes.clienteId = vendas.cliente' +
+        'Id'
+      
+        #9'WHERE vendas.dataVenda BETWEEN CONVERT(DATE, GETDATE()-7) and C' +
+        'ONVERT(DATE, GETDATE())'
+      '    GROUP BY Vendas.clienteId, clientes.Nome')
+    Params = <>
+    Left = 693
+    Top = 114
+  end
+  object QryVendasUltimasSemana: TZQuery
+    Connection = DtmPrincipal.ConexaoDB
+    SQL.Strings = (
+      ''
+      
+        '   SELECT vendas.dataVenda AS Label, SUM(vendas.totalVenda) AS V' +
+        'alue'
+      '     FROM Vendas'
+      
+        #9'WHERE vendas.dataVenda BETWEEN CONVERT(DATE, GETDATE()-7) and C' +
+        'ONVERT(DATE, GETDATE())'
+      '    GROUP BY Vendas.dataVenda')
+    Params = <>
+    Left = 333
+    Top = 394
+  end
+  object Qry10ProdutosMaisVendidos: TZQuery
+    Connection = DtmPrincipal.ConexaoDB
+    SQL.Strings = (
+      
+        'SELECT TOP 10 CONVERT(VARCHAR, vi.produtoId) + '#39'-'#39'+p.nome AS Lab' +
+        'el, SUM(vi.totalProduto) AS Value'
+      '  FROM vendasItens as vi'
+      '       INNER JOIN produtos AS P ON p.produtoId = vi.produtoId'
+      ' GROUP BY vi.produtoId, p.nome')
+    Params = <>
+    Left = 725
+    Top = 370
   end
 end

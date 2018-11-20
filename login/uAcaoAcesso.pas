@@ -63,16 +63,16 @@ end;
 
 procedure TfrmCadAcaoAcesso.btnGravarClick(Sender: TObject);
 begin
-  if oAcaoAcesso.ChaveExiste(edtChave.Text) then begin
-    MessageDlg('Chave já cadastrado', mtInformation, [mbok],0);
-    edtChave.SetFocus;
-    abort;
-  end;
-
   if edtacaoAcessoId.Text<>EmptyStr then
      oAcaoAcesso.codigo:=StrToInt(edtacaoAcessoId.Text)
   else
      oAcaoAcesso.codigo:=0;
+
+  if oAcaoAcesso.ChaveExiste(edtChave.Text, oAcaoAcesso.codigo) then begin
+    MessageDlg('Chave já cadastrado', mtInformation, [mbok],0);
+    edtChave.SetFocus;
+    abort;
+  end;
 
   oAcaoAcesso.descricao :=edtDescricao.Text;
   oAcaoAcesso.chave     :=edtChave.Text;

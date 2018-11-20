@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.Grids, Vcl.DBGrids,
   Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.DBCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  uEnum, cCadUsuario;
+  uEnum, cCadUsuario, cAcaoAcesso;
 
 type
   TfrmCadUsuario = class(TfrmTelaHeranca)
@@ -55,6 +55,8 @@ begin
      Result:= oUsuario.Inserir
   else if EstadoDoCadastro=ecAlterar then
      Result:= oUsuario.Atualizar;
+
+  TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmCadUsuario.btnAlterarClick(Sender: TObject);

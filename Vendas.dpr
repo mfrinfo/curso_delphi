@@ -37,7 +37,8 @@ uses
   cAtualizacaoCampoMSSQL in 'classes\cAtualizacaoCampoMSSQL.pas',
   cArquivoIni in 'classes\cArquivoIni.pas',
   cAcaoAcesso in 'classes\cAcaoAcesso.pas',
-  uAcaoAcesso in 'login\uAcaoAcesso.pas' {frmCadAcaoAcesso};
+  uAcaoAcesso in 'login\uAcaoAcesso.pas' {frmCadAcaoAcesso},
+  uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes};
 
 {$R *.res}
 

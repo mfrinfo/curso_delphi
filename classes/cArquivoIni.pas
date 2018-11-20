@@ -34,7 +34,7 @@ var
   Ini: TIniFile;
 begin
   try
-    Ini := TIniFile.Create(ChangeFileExt( Application.ExeName, '.INI' ));
+    Ini := TIniFile.Create(ArquivoIni);
     Result := Ini.ReadString( aSecao, aEntrada, 'NAO ENCONTRADO' );
   finally
     Ini.Free;
@@ -47,7 +47,7 @@ var
   Ini: TIniFile;
 begin
   try
-    Ini := TIniFile.Create(ChangeFileExt( Application.ExeName, '.INI'));
+    Ini := TIniFile.Create(ArquivoIni);
     Ini.WriteString( aSecao, aEntrada, aValor);
   finally
     Ini.Free;

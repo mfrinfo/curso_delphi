@@ -7,7 +7,7 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDtmPrincipal, Enter,
   ufrmAtualizaDB, ShellApi, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
   VclTee.TeeGDIPlus, Data.DB, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,
-  VCLTee.Chart, VCLTee.DBChart, cUsuarioLogado, ZDbcIntfs, cAcaoAcesso;
+  VCLTee.Chart, VCLTee.DBChart, cUsuarioLogado, ZDbcIntfs, cAcaoAcesso, RLReport;
 
 type
   TfrmMenuPrincipal = class(TForm)
@@ -60,6 +60,8 @@ type
     TeclaEnter:TMREnter;
     procedure AtualizacaoBancoDados(aForm: TfrmAtualizaBancoDados);
     procedure CriarForm(aNomeForm: TFormClass);
+    procedure CriarRelatorio(aNomeForm: TFormClass; aNomeGerador: String);
+
   public
     { Public declarations }
   end;
@@ -97,6 +99,7 @@ end;
 
 procedure TfrmMenuPrincipal.CLIENTE2Click(Sender: TObject);
 begin
+  CriarRelatorio(TfrmRelCadClientes,'Relatorio');
   frmRelCadClientes:=TfrmRelCadClientes.Create(Self);
   frmRelCadClientes.Relatorio.PreviewModal;
   frmRelCadClientes.Release;
@@ -308,6 +311,21 @@ begin
   try
     form := aNomeForm.Create(Application);
     form.ShowModal;
+  finally
+    if Assigned(form) then
+       form.Release;
+  end;
+end;
+
+procedure TfrmMenuPrincipal.CriarRelatorio(aNomeForm: TFormClass; aNomeGerador:String);
+var form: TForm;
+    aRelatorio:TRLReport;
+begin
+  try
+    form := aNomeForm.Create(Application);
+    with form do begin
+      aRelatorio.PreviewModal;
+    end;
   finally
     if Assigned(form) then
        form.Release;

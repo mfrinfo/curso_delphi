@@ -337,6 +337,7 @@ object frmTelaHeranca: TfrmTelaHeranca
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 1
             Visible = False
+            OnClick = btnPesquisaClick
           end
         end
         object pnlListagemCentro: TPanel

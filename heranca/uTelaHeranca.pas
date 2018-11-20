@@ -7,7 +7,7 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls,
   Vcl.StdCtrls, Vcl.Buttons, Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask,
   Vcl.DBCtrls, ZAbstractRODataset, ZAbstractDataset, ZDataset, uDtmPrincipal,
-  uEnum, RxToolEdit, RxCurrEdit;
+  uEnum, RxToolEdit, RxCurrEdit, ZConnection;
 
 type
   TfrmTelaHeranca = class(TForm)
@@ -45,6 +45,7 @@ type
     procedure grdListagemDblClick(Sender: TObject);
     procedure grdListagemKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure btnPesquisaClick(Sender: TObject);
   private
     procedure ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar,
       btnApagar: TBitBtn; btnNavigator: TDBNavigator;
@@ -62,6 +63,8 @@ type
     IndiceAtual:string;
     function Gravar(EstadoDoCadastro:TEstadoDoCadastro):boolean; virtual;
     function Apagar:Boolean; virtual;
+    class function TenhoAcesso(aUsuarioId: Integer; aChave: String;
+      aConexao: TZConnection): Boolean; static;
 
 
     procedure BloqueiaCTRL_DEL_DBGrid(var Key: Word; Shift: TShiftState);
@@ -71,6 +74,9 @@ var
   frmTelaHeranca: TfrmTelaHeranca;
 
 implementation
+
+uses
+  cCadUsuario, uPrincipal;
 
 {$R *.dfm}
 
@@ -233,6 +239,11 @@ end;
 
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
 begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, DtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso',mtWarning,[mbOK],0);
+     Abort;
+  end;
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, False);
   EstadoDoCadastro:=ecAlterar;
 end;
@@ -247,9 +258,24 @@ end;
 
 procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, DtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso',mtWarning,[mbOK],0);
+     Abort;
+  end;
+
   ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, false);
   EstadoDoCadastro:=ecInserir;
   LimparEdits;
+end;
+
+procedure TfrmTelaHeranca.btnPesquisaClick(Sender: TObject);
+begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, DtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso',mtWarning,[mbOK],0);
+     Abort;
+  end;
 end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
@@ -272,6 +298,12 @@ end;
 
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, DtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso',mtWarning,[mbOK],0);
+     Abort;
+  end;
+
   if (ExisteCampoObrigatorio) then
      Abort;
 
@@ -293,6 +325,12 @@ end;
 
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
+  if not TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, DtmPrincipal.ConexaoDB) then
+  begin
+     MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso',mtWarning,[mbOK],0);
+     Abort;
+  end;
+
   try
     if (Apagar) then begin
        ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
@@ -313,6 +351,33 @@ begin
    //Bloqueia o CTRL + DEL
    if (Shift = [ssCtrl]) and (Key = 46) then
       Key := 0;
+end;
+
+class function TfrmTelaHeranca.TenhoAcesso(aUsuarioId:Integer; aChave:String; aConexao: TZConnection):Boolean;
+var Qry:TZQuery;
+begin
+  try
+    Result:=true;
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=aConexao;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('SELECT usuarioId '+
+                '  FROM usuariosAcaoAcesso '+
+                ' WHERE usuarioId=:usuarioId  '+
+                '   AND acaoAcessoId=(SELECT TOP 1 acaoAcessoId FROM acaoAcesso WHERE chave=:chave)'+
+                '   AND ativo=1');
+    Qry.ParamByName('usuarioId').AsInteger       :=aUsuarioId;
+    Qry.ParamByName('chave').AsString            :=aChave;
+
+    Qry.Open;
+
+    if Qry.IsEmpty then
+       Result:=false
+
+  finally
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
 end;
 
 end.

@@ -5,9 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uDtmPrincipal, Enter,
-  ufrmAtualizaDB, ShellApi, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
+  ufrmAtualizaDB, ShellApi, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls, uUsuarioVsAcoes,
   VclTee.TeeGDIPlus, Data.DB, VCLTee.Series, VCLTee.TeEngine, VCLTee.TeeProcs,
-  VCLTee.Chart, VCLTee.DBChart, cUsuarioLogado, ZDbcIntfs, cAcaoAcesso, RLReport;
+  VCLTee.Chart, VCLTee.DBChart, cUsuarioLogado, ZDbcIntfs, cAcaoAcesso, RLReport,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset;
 
 type
   TfrmMenuPrincipal = class(TForm)
@@ -37,6 +38,20 @@ type
     N4: TMenuItem;
     ALTERARSENHA1: TMenuItem;
     AESDEACESSO1: TMenuItem;
+    N5: TMenuItem;
+    PERMISSODEAESPARAUSURIOS1: TMenuItem;
+    DBChart1: TDBChart;
+    QryProdutoEstoque: TZQuery;
+    Series1: TBarSeries;
+    QryValorVendaPorCliente: TZQuery;
+    DBChart2: TDBChart;
+    Series2: TPieSeries;
+    DBChart3: TDBChart;
+    Series3: TFastLineSeries;
+    QryVendasUltimasSemana: TZQuery;
+    DBChart4: TDBChart;
+    PieSeries1: TPieSeries;
+    Qry10ProdutosMaisVendidos: TZQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FECHAR1Click(Sender: TObject);
@@ -55,12 +70,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure ALTERARSENHA1Click(Sender: TObject);
     procedure AESDEACESSO1Click(Sender: TObject);
+    procedure PERMISSODEAESPARAUSURIOS1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter:TMREnter;
     procedure AtualizacaoBancoDados(aForm: TfrmAtualizaBancoDados);
     procedure CriarForm(aNomeForm: TFormClass);
-    procedure CriarRelatorio(aNomeForm: TFormClass; aNomeGerador: String);
+    procedure CriarRelatorio(aNomeForm: TFormClass);
 
   public
     { Public declarations }
@@ -77,7 +93,7 @@ implementation
 uses uCadCategorias, uCadCliente, uCadProdutos, uProVendas, uRelCadCategorias,
   uRelCadProdutos, uRelCadProdutosComGrupoCategoria, uRelCadClientes,
   uRelCadClientesFicha, uRelProVendaPorData, uSelecionarData, uCadUsuario,
-  uLogin, uAlterarSenha, cAtualizacaoBancoDeDados, cArquivoIni, uAcaoAcesso;
+  uLogin, uAlterarSenha, cAtualizacaoBancoDeDados, cArquivoIni, uAcaoAcesso, cCadUsuario, uTelaHeranca;
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
 begin
@@ -86,10 +102,7 @@ end;
 
 procedure TfrmMenuPrincipal.CATEGORIAS2Click(Sender: TObject);
 begin
-  frmRelCadCategorias:= TfrmRelCadCategorias.Create(Self);
-  frmRelCadCategorias.Relatorio.PreviewModal;
-  frmRelCadCategorias.Release;
-
+  CriarRelatorio(TfrmRelCadCategorias);
 end;
 
 procedure TfrmMenuPrincipal.Cliente1Click(Sender: TObject);
@@ -99,10 +112,7 @@ end;
 
 procedure TfrmMenuPrincipal.CLIENTE2Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadClientes,'Relatorio');
-  frmRelCadClientes:=TfrmRelCadClientes.Create(Self);
-  frmRelCadClientes.Relatorio.PreviewModal;
-  frmRelCadClientes.Release;
+  CriarRelatorio(TfrmRelCadClientes);
 end;
 
 procedure TfrmMenuPrincipal.FECHAR1Click(Sender: TObject);
@@ -112,9 +122,7 @@ end;
 
 procedure TfrmMenuPrincipal.FICHADECLIENTE1Click(Sender: TObject);
 begin
-  frmRelCadClientesFicha:=TfrmRelCadClientesFicha.Create(Self);
-  frmRelCadClientesFicha.Relatorio.PreviewModal;
-  frmRelCadClientesFicha.Release;
+  CriarRelatorio(TfrmRelCadClientesFicha);
 end;
 
 procedure TfrmMenuPrincipal.FormClose(Sender: TObject;
@@ -207,14 +215,20 @@ begin
     TAcaoAcesso.CriarAcoes(TfrmRelCadProdutosComGrupoCategoria,DtmPrincipal.ConexaoDB);
     TAcaoAcesso.CriarAcoes(TfrmRelCadProdutos,DtmPrincipal.ConexaoDB);
     TAcaoAcesso.CriarAcoes(TfrmRelCadCategorias,DtmPrincipal.ConexaoDB);
+    TAcaoAcesso.CriarAcoes(TfrmUsuarioVsAcoes,DtmPrincipal.ConexaoDB);
 
+    TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);
+
+    QryProdutoEstoque.Open;
+    QryValorVendaPorCliente.Open;
+    QryVendasUltimasSemana.Open;
+    Qry10ProdutosMaisVendidos.Open;
     frmAtualizaBancoDados.Free;
 	
     TeclaEnter:=TMREnter.Create(Self);
     TeclaEnter.FocusEnabled:=True;
     TeclaEnter.FocusColor:=clInfoBk;
   end;
-
 end;
 
 procedure TfrmMenuPrincipal.FormShow(Sender: TObject);
@@ -236,6 +250,11 @@ begin
   ShellExecute(Handle,'open','https://www.udemy.com/desenvolver-sistema-com-delphi-e-sql-server-na-pratica/',nil,nil,SW_SHOW);
 end;
 
+procedure TfrmMenuPrincipal.PERMISSODEAESPARAUSURIOS1Click(Sender: TObject);
+begin
+  CriarForm(TfrmUsuarioVsAcoes);
+end;
+
 procedure TfrmMenuPrincipal.PRODUTO1Click(Sender: TObject);
 begin
   CriarForm(TfrmCadProduto);
@@ -243,16 +262,12 @@ end;
 
 procedure TfrmMenuPrincipal.PRODUTO2Click(Sender: TObject);
 begin
-  frmRelCadProdutos:=TfrmRelCadProdutos.Create(Self);
-  frmRelCadProdutos.Relatorio.PreviewModal;
-  frmRelCadProdutos.Release;
+  CriarRelatorio(TfrmRelCadProdutos);
 end;
 
 procedure TfrmMenuPrincipal.PRODUTOSPORCATEGORIAS1Click(Sender: TObject);
 begin
-  frmRelCadProdutosComGrupoCategoria:=TfrmRelCadProdutosComGrupoCategoria.Create(Self);
-  frmRelCadProdutosComGrupoCategoria.Relatorio.PreviewModal;
-  frmRelCadProdutosComGrupoCategoria.Release;
+  CriarRelatorio(TfrmRelCadProdutosComGrupoCategoria);
 end;
 
 procedure TfrmMenuPrincipal.USURIOS1Click(Sender: TObject);
@@ -310,21 +325,39 @@ var form: TForm;
 begin
   try
     form := aNomeForm.Create(Application);
-    form.ShowModal;
+    if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name,DtmPrincipal.ConexaoDB) then
+    begin
+      form.ShowModal;
+    end
+    else begin
+       MessageDlg('Usuário: '+oUsuarioLogado.nome +' Não tem Permissão de Acesso',mtWarning,[mbOK],0);
+    end;
   finally
     if Assigned(form) then
        form.Release;
   end;
 end;
 
-procedure TfrmMenuPrincipal.CriarRelatorio(aNomeForm: TFormClass; aNomeGerador:String);
+procedure TfrmMenuPrincipal.CriarRelatorio(aNomeForm: TFormClass);
 var form: TForm;
     aRelatorio:TRLReport;
+    i:Integer;
 begin
   try
     form := aNomeForm.Create(Application);
-    with form do begin
-      aRelatorio.PreviewModal;
+    if TfrmTelaHeranca.TenhoAcesso(oUsuarioLogado.codigo, form.Name,DtmPrincipal.ConexaoDB) then
+    begin
+      for I := 0 to form.ComponentCount-1 do
+      begin
+        if form.Components[i] is TRLReport then
+        begin
+           TRLReport(form.Components[i]).PreviewModal;
+           Break;
+        end;
+      end;
+    end
+    else begin
+       MessageDlg('Usuário: '+oUsuarioLogado.nome +', não tem permissão de acesso',mtWarning,[mbOK],0);
     end;
   finally
     if Assigned(form) then

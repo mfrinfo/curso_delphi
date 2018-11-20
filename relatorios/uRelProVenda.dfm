@@ -1,7 +1,7 @@
 object frmRelProVenda: TfrmRelProVenda
   Left = 0
   Top = 0
-  Caption = 'frmRelProVenda'
+  Caption = 'Relat'#243'rio de Venda'
   ClientHeight = 839
   ClientWidth = 825
   Color = clBtnFace

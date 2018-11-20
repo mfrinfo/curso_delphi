@@ -34,6 +34,7 @@ type
     function Logar(aUsuario, aSenha: String): Boolean;
     function UsuarioExiste(aUsuario: String): Boolean;
     function AlterarSenha: Boolean;
+
   published
     property codigo        :Integer    read F_usuarioId      write F_usuarioId;
     property nome          :string     read F_nome           write F_nome;
@@ -295,6 +296,7 @@ begin
        FreeAndNil(Qry);
   end;
 end;
+
 {$endregion}
 
 end.

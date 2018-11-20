@@ -23,6 +23,8 @@ type
     F_descricao:String;
     F_chave: string;
     class procedure PreencherAcoes(aForm: TForm; aConexao:TZConnection); static;
+    class procedure VerificarUsuarioAcao(aUsuarioId, aAcaoAcessoId: Integer;
+      aConexao: TZConnection); static;
   public
     constructor Create(aConexao:TZConnection);
     destructor Destroy; override;
@@ -30,9 +32,10 @@ type
     function Atualizar:Boolean;
     function Apagar:Boolean;
     function Selecionar(id:Integer):Boolean;
-    function ChaveExiste(aChave: String): Boolean;
+    function ChaveExiste(aChave: String; aId:Integer=0): Boolean;
 
     class procedure CriarAcoes(aNomeForm: TFormClass; aConexao: TZConnection); static;
+    class procedure PreencherUsuariosVsAcoes(aConexao: TZConnection); static;
 
   published
     property codigo        :Integer    read F_acaoAcessoId  write F_acaoAcessoId;
@@ -183,7 +186,7 @@ begin
   end;
 end;
 
-function TAcaoAcesso.ChaveExiste(aChave:String):Boolean;
+function TAcaoAcesso.ChaveExiste(aChave: String; aId:Integer):Boolean;
 var Qry:TZQuery;
 begin
   try
@@ -193,6 +196,12 @@ begin
     Qry.SQL.Add('SELECT COUNT(acaoAcessoId) AS Qtde '+
                 '  FROM acaoAcesso '+
                 ' WHERE chave =:chave ');
+    if aId > 0 then
+    begin
+      Qry.SQL.Add(' AND acaoAcessoId<>:acaoAcessoId');
+      Qry.ParamByName('acaoAcessoId').AsInteger :=aId;
+    end;
+
     Qry.ParamByName('chave').AsString :=aChave;
     Try
       Qry.Open;
@@ -230,7 +239,7 @@ begin
       begin
         if TBitBtn(aForm.Components[i]).Tag=99 then
         begin
-          oAcaoAcesso.descricao := StringReplace(TBitBtn(aForm.Components[i]).Caption, '&','',[rfReplaceAll]);
+          oAcaoAcesso.descricao := '    - BOTÃO '+ StringReplace(TBitBtn(aForm.Components[i]).Caption, '&','',[rfReplaceAll]);
           oAcaoAcesso.Chave     := aForm.Name+'_'+TBitBtn(aForm.Components[i]).Name;
           if not oAcaoAcesso.ChaveExiste(oAcaoAcesso.Chave) then
              oAcaoAcesso.Inserir;
@@ -257,6 +266,83 @@ begin
   end;
 end;
 
+
+class procedure TAcaoAcesso.VerificarUsuarioAcao(aUsuarioId:Integer; aAcaoAcessoId:Integer; aConexao:TZConnection);
+var Qry:TZQuery;
+begin
+  try
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=aConexao;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('SELECT usuarioId '+
+                '  FROM usuariosAcaoAcesso '+
+                ' WHERE usuarioId=:usuarioId '+
+                '   AND acaoAcessoId=:acaoAcessoId ');
+    Qry.ParamByName('usuarioId').AsInteger:=aUsuarioId;
+    Qry.ParamByName('acaoAcessoId').AsInteger:=aAcaoAcessoId;
+    Qry.Open;
+
+    if Qry.IsEmpty then
+    begin
+       Qry.Close;
+       Qry.SQL.Clear;
+       Qry.SQL.Add('INSERT INTO usuariosAcaoAcesso (usuarioId, acaoAcessoId, ativo) '+
+                   '     VALUES (:usuarioId, :acaoAcessoId, :ativo) ');
+       Qry.ParamByName('usuarioId').AsInteger:=aUsuarioId;
+       Qry.ParamByName('acaoAcessoId').AsInteger:=aAcaoAcessoId;
+       Qry.ParamByName('ativo').AsBoolean:=true;
+       Try
+         aConexao.StartTransaction;
+         Qry.ExecSQL;
+         aConexao.Commit;
+       Except
+         aConexao.Rollback;
+       End;
+    end;
+
+  finally
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
+
+end;
+
+class procedure TAcaoAcesso.PreencherUsuariosVsAcoes(aConexao:TZConnection);
+var Qry:TZQuery;
+    QryAcaoAcesso:TZQuery;
+begin
+  try
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=aConexao;
+    Qry.SQL.Clear;
+
+    QryAcaoAcesso:=TZQuery.Create(nil);
+    QryAcaoAcesso.Connection:=aConexao;
+    QryAcaoAcesso.SQL.Clear;
+
+    Qry.SQL.Add('SELECT usuarioId FROM usuarios ');
+    Qry.Open;
+
+    QryAcaoAcesso.SQL.Add('SELECT acaoAcessoId FROM acaoAcesso ');
+    QryAcaoAcesso.Open;
+
+    while not Qry.Eof do
+    begin
+      QryAcaoAcesso.First;
+
+      while not QryAcaoAcesso.Eof do
+      begin
+        VerificarUsuarioAcao(Qry.FieldByName('usuarioId').AsInteger, QryAcaoAcesso.FieldByName('acaoAcessoId').AsInteger, aConexao);
+        QryAcaoAcesso.Next;
+      end;
+
+      Qry.Next;
+    end;
+  finally
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
+end;
 
 {$endregion}
 

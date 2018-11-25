@@ -346,6 +346,8 @@ begin
   QryListagem.SQL.Add(CondicaoSQL);
   QryListagem.Open;
 
+  mskPesquisa.Text := '';
+
 end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);

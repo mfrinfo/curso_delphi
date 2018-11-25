@@ -91,7 +91,6 @@ procedure TfrmCadCategoria.FormCreate(Sender: TObject);
 begin
   inherited;
   oCategoria:=TCategoria.Create(DtmPrincipal.ConexaoDB);
-
   IndiceAtual:='descricao';
 end;
 

@@ -285,7 +285,7 @@ object frmTelaHeranca: TfrmTelaHeranca
           Align = alTop
           TabOrder = 0
           object lblIndice: TLabel
-            Left = 4
+            Left = 3
             Top = 9
             Width = 39
             Height = 13

@@ -200,8 +200,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
         'Vendas da '#218'ltima Semana')
       Align = alClient
       TabOrder = 2
-      ExplicitLeft = -5
-      ExplicitTop = 249
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object Series3: TFastLineSeries
@@ -230,8 +228,6 @@ object frmMenuPrincipal: TfrmMenuPrincipal
       View3DOptions.Rotation = 360
       Align = alClient
       TabOrder = 3
-      ExplicitLeft = 559
-      ExplicitTop = 260
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object PieSeries1: TPieSeries

@@ -41,7 +41,10 @@ uses
   uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes},
   Vcl.Themes,
   Vcl.Styles,
-  uDTMGrafico in 'datamodule\uDTMGrafico.pas' {DTMGrafico: TDataModule};
+  uDTMGrafico in 'datamodule\uDTMGrafico.pas' {DTMGrafico: TDataModule},
+  uTelaHerancaConsulta in 'heranca\uTelaHerancaConsulta.pas' {frmTelaHerancaConsulta},
+  uConCategoria in 'consultas\uConCategoria.pas' {frmConCategoria},
+  cFuncao in 'classes\cFuncao.pas';
 
 {$R *.res}
 

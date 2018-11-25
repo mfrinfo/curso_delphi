@@ -7,7 +7,7 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.Grids, Vcl.DBGrids,
   Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.DBCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  RxToolEdit, RxCurrEdit, cCadProduto, uEnum;
+  RxToolEdit, RxCurrEdit, cCadProduto, uEnum, cFuncao, uCadCategorias;
 
 type
   TfrmCadProduto = class(TfrmTelaHeranca)
@@ -33,11 +33,15 @@ type
     QryCategoriacategoriaId: TIntegerField;
     QryCategoriadescricao: TWideStringField;
     dtsCategoria: TDataSource;
+    btnIncluirCategoria: TSpeedButton;
+    btnPesquisarCategoria: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnAlterarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnIncluirCategoriaClick(Sender: TObject);
+    procedure btnPesquisarCategoriaClick(Sender: TObject);
   private
     { Private declarations }
     oProduto:TProduto;
@@ -54,7 +58,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDtmPrincipal;
+uses uDtmPrincipal, uPrincipal, uConCategoria;
 
 {$region 'Override'}
 function TfrmCadProduto.Apagar: Boolean;
@@ -82,6 +86,29 @@ begin
   else if (EstadoDoCadastro=ecAlterar) then
      Result:=oProduto.Atualizar;
 end;
+procedure TfrmCadProduto.btnIncluirCategoriaClick(Sender: TObject);
+begin
+  inherited;
+  TFuncao.CriarForm(TfrmCadCategoria, oUsuarioLogado, DtmPrincipal.ConexaoDB);
+  QryCategoria.Refresh;
+end;
+
+procedure TfrmCadProduto.btnPesquisarCategoriaClick(Sender: TObject);
+begin
+  inherited;
+  frmConCategoria:=TfrmConCategoria.Create(Self);
+
+  if lkpCategoria.KeyValue<>Null then
+     frmConCategoria.aIniciarPesquisaId:=lkpCategoria.KeyValue;
+
+  frmConCategoria.ShowModal;
+
+  if frmConCategoria.aRetornarIdSelecionado<>Unassigned then  //Não Atribuido
+     lkpCategoria.KeyValue:=frmConCategoria.aRetornarIdSelecionado;
+
+  frmConCategoria.Release;
+end;
+
 {$endregion}
 
 procedure TfrmCadProduto.btnAlterarClick(Sender: TObject);

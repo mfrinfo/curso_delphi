@@ -10,10 +10,10 @@ inherited frmCadCategoria: TfrmCadCategoria
     Top = 290
     Width = 775
     ExplicitTop = 290
-    ExplicitWidth = 773
+    ExplicitWidth = 775
     inherited btnFechar: TBitBtn
       Left = 695
-      ExplicitLeft = 908
+      ExplicitLeft = 695
     end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()
@@ -22,24 +22,24 @@ inherited frmCadCategoria: TfrmCadCategoria
   inherited pnlCentro: TPanel
     Width = 775
     Height = 290
-    ExplicitWidth = 773
+    ExplicitWidth = 775
     ExplicitHeight = 290
     inherited pgcPrincipal: TPageControl
       Width = 773
       Height = 288
-      ExplicitWidth = 771
+      ExplicitWidth = 773
       ExplicitHeight = 288
       inherited tabListagem: TTabSheet
-        ExplicitWidth = 978
+        ExplicitWidth = 765
         ExplicitHeight = 260
         inherited pnlListagemTopo: TPanel
           Width = 765
-          ExplicitWidth = 978
+          ExplicitWidth = 765
         end
         inherited pnlListagemCentro: TPanel
           Width = 765
           Height = 200
-          ExplicitWidth = 978
+          ExplicitWidth = 765
           ExplicitHeight = 200
           inherited grdListagem: TDBGrid
             Width = 763
@@ -62,9 +62,7 @@ inherited frmCadCategoria: TfrmCadCategoria
         end
       end
       inherited tabManutencao: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 763
+        ExplicitWidth = 765
         ExplicitHeight = 260
         object edtCategoriaId: TLabeledEdit
           Tag = 1

@@ -197,6 +197,11 @@
             <Form>frmUsuarioVsAcoes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="datamodule\uDTMGrafico.pas">
+            <Form>DTMGrafico</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

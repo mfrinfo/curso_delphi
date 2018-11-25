@@ -1,47 +1,48 @@
 inherited frmCadCategoria: TfrmCadCategoria
   Caption = 'Cadastro de Categorias'
   ClientHeight = 342
-  ClientWidth = 773
-  ExplicitWidth = 779
+  ClientWidth = 775
+  ExplicitWidth = 781
   ExplicitHeight = 370
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlRodaPe: TPanel
     Top = 290
-    Width = 773
+    Width = 775
     ExplicitTop = 290
     ExplicitWidth = 773
+    inherited btnFechar: TBitBtn
+      Left = 695
+      ExplicitLeft = 908
+    end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()
     end
   end
   inherited pnlCentro: TPanel
-    Width = 773
+    Width = 775
     Height = 290
     ExplicitWidth = 773
     ExplicitHeight = 290
     inherited pgcPrincipal: TPageControl
-      Width = 771
+      Width = 773
       Height = 288
-      ActivePage = tabManutencao
       ExplicitWidth = 771
       ExplicitHeight = 288
       inherited tabListagem: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 763
+        ExplicitWidth = 978
         ExplicitHeight = 260
         inherited pnlListagemTopo: TPanel
-          Width = 763
-          ExplicitWidth = 763
+          Width = 765
+          ExplicitWidth = 978
         end
         inherited pnlListagemCentro: TPanel
-          Width = 763
+          Width = 765
           Height = 200
-          ExplicitWidth = 763
+          ExplicitWidth = 978
           ExplicitHeight = 200
           inherited grdListagem: TDBGrid
-            Width = 761
+            Width = 763
             Height = 198
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             Columns = <

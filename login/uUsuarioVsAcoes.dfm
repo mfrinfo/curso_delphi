@@ -23,10 +23,6 @@ object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
     Height = 413
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 416
-    ExplicitTop = 64
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object Splitter1: TSplitter
       Left = 265
       Top = 1
@@ -42,7 +38,6 @@ object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
       Height = 411
       Align = alLeft
       TabOrder = 0
-      ExplicitHeight = 370
       object DBGrid1: TDBGrid
         Left = 1
         Top = 1
@@ -77,9 +72,6 @@ object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
       Height = 411
       Align = alClient
       TabOrder = 1
-      ExplicitLeft = 408
-      ExplicitWidth = 308
-      ExplicitHeight = 370
       object grdAcoes: TDBGrid
         Left = 1
         Top = 1
@@ -113,12 +105,9 @@ object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
     Height = 41
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = 248
-    ExplicitTop = 208
-    ExplicitWidth = 185
     object btnFechar: TBitBtn
-      Left = 774
-      Top = 9
+      Left = 766
+      Top = 6
       Width = 99
       Height = 25
       Caption = 'FECHAR'

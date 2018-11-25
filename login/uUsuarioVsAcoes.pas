@@ -73,10 +73,10 @@ end;
 
 procedure TfrmUsuarioVsAcoes.grdAcoesDblClick(Sender: TObject);
 var Qry:TZQuery;
-    //bmRegistroAtual:TBookmark;
+    bmRegistroAtual:TBookmark;
 begin
   try
-   //bmRegistroAtual := QryAcoes.GetBookMark; //Marcar o Registro Selecionado
+    bmRegistroAtual := QryAcoes.GetBookMark; //Marcar o Registro Selecionado
     Qry:=TZQuery.Create(nil);
     Qry.Connection:=DtmPrincipal.ConexaoDB;
     Qry.SQL.Clear;
@@ -98,7 +98,7 @@ begin
 
   finally
     SelecionarAcoesAcessoPorUsuario;
-    //QryAcoes.GotoBookMark(bmRegistroAtual);  //Faz o Retorno do Registro depois que a query foi fechada e aberta
+    QryAcoes.GotoBookMark(bmRegistroAtual);  //Faz o Retorno do Registro depois que a query foi fechada e aberta
     if Assigned(Qry) then
        FreeAndNil(Qry);
   end;

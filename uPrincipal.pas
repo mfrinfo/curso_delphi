@@ -41,17 +41,13 @@ type
     N5: TMenuItem;
     PERMISSODEAESPARAUSURIOS1: TMenuItem;
     DBChart1: TDBChart;
-    QryProdutoEstoque: TZQuery;
     Series1: TBarSeries;
-    QryValorVendaPorCliente: TZQuery;
     DBChart2: TDBChart;
     Series2: TPieSeries;
     DBChart3: TDBChart;
     Series3: TFastLineSeries;
-    QryVendasUltimasSemana: TZQuery;
     DBChart4: TDBChart;
     PieSeries1: TPieSeries;
-    Qry10ProdutosMaisVendidos: TZQuery;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FECHAR1Click(Sender: TObject);
@@ -77,6 +73,7 @@ type
     procedure AtualizacaoBancoDados(aForm: TfrmAtualizaBancoDados);
     procedure CriarForm(aNomeForm: TFormClass);
     procedure CriarRelatorio(aNomeForm: TFormClass);
+    procedure AtualizarDashBoard;
 
   public
     { Public declarations }
@@ -93,7 +90,8 @@ implementation
 uses uCadCategorias, uCadCliente, uCadProdutos, uProVendas, uRelCadCategorias,
   uRelCadProdutos, uRelCadProdutosComGrupoCategoria, uRelCadClientes,
   uRelCadClientesFicha, uRelProVendaPorData, uSelecionarData, uCadUsuario,
-  uLogin, uAlterarSenha, cAtualizacaoBancoDeDados, cArquivoIni, uAcaoAcesso, cCadUsuario, uTelaHeranca;
+  uLogin, uAlterarSenha, cAtualizacaoBancoDeDados, cArquivoIni, uAcaoAcesso, cCadUsuario, uTelaHeranca,
+  uDTMGrafico;
 
 procedure TfrmMenuPrincipal.CATEGORIAS1Click(Sender: TObject);
 begin
@@ -130,6 +128,9 @@ procedure TfrmMenuPrincipal.FormClose(Sender: TObject;
 begin
   if Assigned(DtmPrincipal) then
      FreeAndNil(DtmPrincipal);
+
+  if Assigned(DTMGrafico) then
+     FreeAndNil(DTMGrafico);
 
   if Assigned(oUsuarioLogado) then
      FreeAndNil(oUsuarioLogado);
@@ -219,10 +220,8 @@ begin
 
     TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);
 
-    QryProdutoEstoque.Open;
-    QryValorVendaPorCliente.Open;
-    QryVendasUltimasSemana.Open;
-    Qry10ProdutosMaisVendidos.Open;
+    DTMGrafico:=TDTMGrafico.Create(Self);
+    AtualizarDashBoard;
     frmAtualizaBancoDados.Free;
 	
     TeclaEnter:=TMREnter.Create(Self);
@@ -364,4 +363,27 @@ begin
        form.Release;
   end;
 end;
+
+procedure TfrmMenuPrincipal.AtualizarDashBoard;
+begin
+  if DTMGrafico.QryProdutoEstoque.Active then
+     DTMGrafico.QryProdutoEstoque.Close;
+
+  if DTMGrafico.QryValorVendaPorCliente.Active then
+     DTMGrafico.QryValorVendaPorCliente.Close;
+
+  if DTMGrafico.QryVendasUltimasSemana.Active then
+     DTMGrafico.QryVendasUltimasSemana.Close;
+
+  if DTMGrafico.Qry10ProdutosMaisVendidos.Active then
+     DTMGrafico.Qry10ProdutosMaisVendidos.Close;
+
+  DTMGrafico.QryProdutoEstoque.Open;
+  DTMGrafico.QryValorVendaPorCliente.Open;
+  DTMGrafico.QryVendasUltimasSemana.Open;
+  DTMGrafico.Qry10ProdutosMaisVendidos.Open;
+
+end;
+
+
 end.

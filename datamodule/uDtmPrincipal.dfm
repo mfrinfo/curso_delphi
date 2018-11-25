@@ -9,13 +9,13 @@ object DtmPrincipal: TDtmPrincipal
     TransactIsolationLevel = tiReadCommitted
     Connected = True
     SQLHourGlass = True
-    HostName = '.\BUSINESSSQL2016'
+    HostName = 'VIRTUAL-PC\SERVERCURSO'
     Port = 0
     Database = 'vendas'
     User = 'sa'
-    Password = 'FOLHAmatic&201IOB'
+    Password = 'mudar@123'
     Protocol = 'mssql'
-    LibraryLocation = 'D:\MARCOS\delphi\ntwdblib.dll'
+    LibraryLocation = 'C:\cursoDelphi\ntwdblib.dll'
     Left = 40
     Top = 24
   end

@@ -33,12 +33,9 @@ inherited frmCadProduto: TfrmCadProduto
     inherited pgcPrincipal: TPageControl
       Width = 860
       Height = 345
-      ActivePage = tabManutencao
       ExplicitWidth = 860
       ExplicitHeight = 345
       inherited tabListagem: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 852
         ExplicitHeight = 317
         inherited pnlListagemTopo: TPanel
@@ -90,8 +87,6 @@ inherited frmCadProduto: TfrmCadProduto
         end
       end
       inherited tabManutencao: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 852
         ExplicitHeight = 317
         object Label1: TLabel
@@ -200,33 +195,40 @@ inherited frmCadProduto: TfrmCadProduto
     object QryListagemprodutoId: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'produtoId'
+      Origin = 'p'
       ReadOnly = True
     end
     object QryListagemnome: TWideStringField
       DisplayLabel = 'Nome'
       FieldName = 'nome'
+      Origin = 'p'
       Size = 60
     end
     object QryListagemdescricao: TWideStringField
       DisplayLabel = 'Descri'#231#227'o'
       FieldName = 'descricao'
+      Origin = 'p'
       Size = 255
     end
     object QryListagemvalor: TFloatField
       DisplayLabel = 'Valor'
       FieldName = 'valor'
+      Origin = 'p'
     end
     object QryListagemquantidade: TFloatField
       DisplayLabel = 'Quantidade'
       FieldName = 'quantidade'
+      Origin = 'p'
     end
     object QryListagemcategoriaId: TIntegerField
       DisplayLabel = 'Cod. Categoria'
       FieldName = 'categoriaId'
+      Origin = 'p'
     end
     object QryListagemDescricaoCategoria: TWideStringField
       DisplayLabel = 'Descri'#231#227'o da Categoria'
       FieldName = 'DescricaoCategoria'
+      Origin = 'c.descricao '
       Size = 30
     end
   end

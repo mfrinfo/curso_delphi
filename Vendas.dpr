@@ -38,7 +38,10 @@ uses
   cArquivoIni in 'classes\cArquivoIni.pas',
   cAcaoAcesso in 'classes\cAcaoAcesso.pas',
   uAcaoAcesso in 'login\uAcaoAcesso.pas' {frmCadAcaoAcesso},
-  uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes};
+  uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes},
+  Vcl.Themes,
+  Vcl.Styles,
+  uDTMGrafico in 'datamodule\uDTMGrafico.pas' {DTMGrafico: TDataModule};
 
 {$R *.res}
 

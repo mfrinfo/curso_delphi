@@ -336,7 +336,6 @@ object frmTelaHeranca: TfrmTelaHeranca
               0E973B0FA65B36FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 1
-            Visible = False
             OnClick = btnPesquisaClick
           end
         end
@@ -380,7 +379,7 @@ object frmTelaHeranca: TfrmTelaHeranca
   end
   object DtsListagem: TDataSource
     DataSet = QryListagem
-    Left = 661
+    Left = 685
     Top = 25
   end
 end

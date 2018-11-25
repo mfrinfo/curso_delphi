@@ -1,8 +1,5 @@
 inherited frmProVenda: TfrmProVenda
   Caption = 'Vendas de Produto'
-  ExplicitTop = -147
-  ExplicitWidth = 870
-  ExplicitHeight = 507
   PixelsPerInch = 96
   TextHeight = 13
   inherited pnlRodaPe: TPanel
@@ -13,10 +10,6 @@ inherited frmProVenda: TfrmProVenda
   inherited pnlCentro: TPanel
     inherited pgcPrincipal: TPageControl
       inherited tabListagem: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 854
-        ExplicitHeight = 396
         inherited pnlListagemCentro: TPanel
           inherited grdListagem: TDBGrid
             Columns = <
@@ -54,10 +47,6 @@ inherited frmProVenda: TfrmProVenda
         end
       end
       inherited tabManutencao: TTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 854
-        ExplicitHeight = 396
         object Label1: TLabel
           Left = 195
           Top = 16
@@ -366,6 +355,7 @@ inherited frmProVenda: TfrmProVenda
     object QryListagemclienteId: TIntegerField
       DisplayLabel = 'Cod. Cliente'
       FieldName = 'clienteId'
+      Origin = 'vendas'
       Required = True
     end
     object QryListagemnome: TWideStringField

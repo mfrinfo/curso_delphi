@@ -55,7 +55,7 @@ object frmRelProVenda: TfrmRelProVenda
     end
     object Rodape: TRLBand
       Left = 38
-      Top = 233
+      Top = 228
       Width = 718
       Height = 36
       BandType = btFooter
@@ -124,7 +124,7 @@ object frmRelProVenda: TfrmRelProVenda
       Left = 38
       Top = 93
       Width = 718
-      Height = 92
+      Height = 87
       DataFields = 'vendaId'
       Degrade.OppositeColor = clSilver
       FooterMeasuring = fmBeforeDetail
@@ -301,10 +301,10 @@ object frmRelProVenda: TfrmRelProVenda
           Left = 0
           Top = 21
           Width = 718
-          Height = 16
+          Height = 32
           object RLDBText1: TRLDBText
             Left = 9
-            Top = -1
+            Top = 0
             Width = 57
             Height = 16
             Alignment = taRightJustify
@@ -321,7 +321,7 @@ object frmRelProVenda: TfrmRelProVenda
           end
           object RLDBText4: TRLDBText
             Left = 72
-            Top = -1
+            Top = 0
             Width = 38
             Height = 16
             DataField = 'Nome'
@@ -368,7 +368,7 @@ object frmRelProVenda: TfrmRelProVenda
           end
           object RLDBText7: TRLDBText
             Left = 551
-            Top = -1
+            Top = 0
             Width = 74
             Height = 16
             Alignment = taRightJustify
@@ -400,12 +400,20 @@ object frmRelProVenda: TfrmRelProVenda
             Text = ''
             Transparent = False
           end
+          object RLDraw4: TRLDraw
+            Left = 12
+            Top = 16
+            Width = 703
+            Height = 4
+            DrawKind = dkLine
+            HoldStyle = hsHorizontally
+          end
         end
       end
     end
     object RLBand4: TRLBand
       Left = 38
-      Top = 185
+      Top = 180
       Width = 718
       Height = 48
       BandType = btSummary

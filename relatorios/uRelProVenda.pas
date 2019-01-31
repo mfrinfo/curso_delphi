@@ -65,6 +65,7 @@ type
     RLLabel11: TRLLabel;
     RLLabel12: TRLLabel;
     RLDraw3: TRLDraw;
+    RLDraw4: TRLDraw;
     procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
